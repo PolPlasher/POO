@@ -28,6 +28,6 @@ public class Trabajo {
     }
 
     public String toString() {
-        return "ID: " + this.id + " [" + this.usuario + "]: " + this.descripcion;
+        return "\tID: " + this.id + " [" + this.usuario + "]: " + this.descripcion + "\n";
     }
 }
