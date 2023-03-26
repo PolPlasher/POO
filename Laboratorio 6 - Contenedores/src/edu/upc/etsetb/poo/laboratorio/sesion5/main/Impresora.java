@@ -4,7 +4,6 @@
  */
 package edu.upc.etsetb.poo.laboratorio.sesion5.main;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
