@@ -93,7 +93,11 @@ public class Posicion {
      * en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        throw new UnsupportedOperationException("Posicion::esCorrecta. Todavía NO has implementado este método");
+        if (Posicion.filaCharToInt(posStr) <= 10 && Posicion.filaCharToInt(posStr) >= 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -125,7 +129,16 @@ public class Posicion {
      */
     public static String avanzaCasillas(String posicion,
             int deltaFila, int deltaCol) throws PositionException {
-        throw new UnsupportedOperationException("Posicion::avanzaCasillas. Todavía NO has implementado este método");
+        if (!Posicion.esCorrecta(posicion)) {
+            throw new PositionException();
+        } else {
+            String resultado = Posicion.filaIntToFilaChar(Posicion.filaCharToInt(posicion) + deltaFila) + (posicion.substring(1, 2) + deltaCol);
+            if (Posicion.esCorrecta(resultado)) {
+                return resultado;
+            } else {
+                throw new PositionException();
+            }
+        }
     }
 
     /**
