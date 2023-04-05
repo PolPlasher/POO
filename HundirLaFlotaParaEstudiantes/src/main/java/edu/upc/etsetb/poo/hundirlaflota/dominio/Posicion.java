@@ -93,7 +93,10 @@ public class Posicion {
      * en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        throw new UnsupportedOperationException("Posicion::esCorrecta. Todavía NO has implementado este método");
+        if (posStr.charAt(0) >= 'A' && posStr.charAt(0) <= 'J')
+            return true;
+        else
+            return false;
     }
 
     /**
