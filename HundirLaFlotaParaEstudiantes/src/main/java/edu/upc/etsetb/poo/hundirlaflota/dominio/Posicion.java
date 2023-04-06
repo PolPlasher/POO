@@ -93,9 +93,13 @@ public class Posicion {
      * en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        if (posStr.charAt(0) >= 'A' && posStr.charAt(0) <= 'J')
-            return true;
-        else
+        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= 10){
+            int columna = Integer.parseInt(posStr.substring(1));
+            if (columna >=1 && columna <= 10)
+                return true;
+            else
+                return false;
+        } else
             return false;
     }
 
@@ -128,7 +132,16 @@ public class Posicion {
      */
     public static String avanzaCasillas(String posicion,
             int deltaFila, int deltaCol) throws PositionException {
-        throw new UnsupportedOperationException("Posicion::avanzaCasillas. Todavía NO has implementado este método");
+        if (!Posicion.esCorrecta(posicion)) {
+            throw new PositionException(posicion);
+        } else {
+            String resultado = Posicion.filaIntToFilaChar(Posicion.filaCharToInt(posicion) + deltaFila) + Integer.toString(Integer.parseInt(posicion.substring(1)) + deltaCol);
+            if (Posicion.esCorrecta(resultado)) {
+                return resultado;
+            } else {
+                throw new PositionException(resultado);
+            }
+        }
     }
 
     /**
@@ -155,7 +168,18 @@ public class Posicion {
      */
     public static void checkPosicionesCorrectas(String[] posicionDireccion,
             int numCasillas) throws PositionException {
-        throw new UnsupportedOperationException("Posicion::checkPosicionesCorrectas. Todavía NO has implementado este método");
+        String posicionActual;
+        try{
+            if (posicionDireccion[1].equals("H")){
+                for (int i = 0; i < numCasillas; i++)
+                    posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
+            } else if (posicionDireccion[1].equals("V")){
+                for (int i = 0; i < numCasillas; i++)
+                    posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
+            }
+        } catch(PositionException e){
+            throw new PositionException(e.getMessage());
+        }
     }
 
     /**
