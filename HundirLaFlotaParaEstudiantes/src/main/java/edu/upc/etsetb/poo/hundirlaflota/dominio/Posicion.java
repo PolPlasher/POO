@@ -93,9 +93,9 @@ public class Posicion {
      * en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= 10){
+        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= NUM_FILAS){
             int columna = Integer.parseInt(posStr.substring(1));
-            if (columna >=1 && columna <= 10)
+            if (columna >=1 && columna <= NUM_COLUMNAS)
                 return true;
             else
                 return false;
@@ -170,10 +170,10 @@ public class Posicion {
             int numCasillas) throws PositionException {
         String posicionActual;
         try{
-            if (posicionDireccion[1].equals("H")){
+            if (posicionDireccion[1].equals(HORIZONTAL)){
                 for (int i = 0; i < numCasillas; i++)
                     posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
-            } else if (posicionDireccion[1].equals("V")){
+            } else if (posicionDireccion[1].equals(VERTICAL)){
                 for (int i = 0; i < numCasillas; i++)
                     posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
             }
