@@ -95,7 +95,7 @@ public class Posicion {
     public static boolean esCorrecta(String posStr) {
         if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= NUM_FILAS){
             int columna = Integer.parseInt(posStr.substring(1));
-            if (columna >=1 && columna <= NUM_COLUMNAS)
+            if (columna >= 1 && columna <= NUM_COLUMNAS)
                 return true;
             else
                 return false;
