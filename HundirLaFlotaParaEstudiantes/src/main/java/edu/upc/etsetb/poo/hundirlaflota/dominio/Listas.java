@@ -27,6 +27,13 @@ public class Listas {
      */
     public static void quitaAUnaOtra(List<String> una,
             List<String> otra) {
-        throw new UnsupportedOperationException("Listas::quitaAUnaOtra. Todavía NO has implementado este método");
+        int j;
+        for (int i = 0; i < otra.size(); i++){
+            j = 0;
+            while (j < una.size() && !una.get(j).equals(otra.get(i)))
+                j++;
+            if (j < una.size())
+                una.remove(j);
+        }
     }
 }
