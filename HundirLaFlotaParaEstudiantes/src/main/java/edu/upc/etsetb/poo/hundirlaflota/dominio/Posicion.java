@@ -4,6 +4,8 @@
  */
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -169,16 +171,12 @@ public class Posicion {
     public static void checkPosicionesCorrectas(String[] posicionDireccion,
             int numCasillas) throws PositionException {
         String posicionActual;
-        try{
-            if (posicionDireccion[1].equals(HORIZONTAL)){
-                for (int i = 0; i < numCasillas; i++)
-                    posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
-            } else if (posicionDireccion[1].equals(VERTICAL)){
-                for (int i = 0; i < numCasillas; i++)
-                    posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
-            }
-        } catch(PositionException e){
-            throw new PositionException(e.getMessage());
+        if (posicionDireccion[1].equals(HORIZONTAL)){
+            for (int i = 0; i < numCasillas; i++)
+                posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
+        } else if (posicionDireccion[1].equals(VERTICAL)){
+            for (int i = 0; i < numCasillas; i++)
+                posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
         }
     }
 
@@ -206,7 +204,26 @@ public class Posicion {
      */
     public static List<String> getPuntosCardinales(String posicion)
             throws PositionException {
-        throw new UnsupportedOperationException("Posicion::getPuntosCardinales. Todavía NO has implementado este método");
+        String posicionActual;
+        List<String> lista = new ArrayList<>();
+        for (int i = 0; i < 4; i++){
+            switch (i) {
+                case 0:
+                    posicionActual = Posicion.avanzaCasillas(posicion, -1, 0);
+                    break;
+                case 1:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 0, 1);
+                    break;
+                case 2:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 1, 0);
+                    break;
+                default:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 0, -1);
+                    break;
+            }
+            lista.add(posicionActual);
+        }
+        return lista;
     }
 
     /**
@@ -233,7 +250,20 @@ public class Posicion {
      */
     public static Set<String> getNorteSur(String posicion)
             throws PositionException {
-        throw new UnsupportedOperationException("Posicion::getNorteSur. Todavía NO has implementado este método");
+        String posicionActual;
+        Set<String> lista = new HashSet<>();
+        for (int i = 0; i < 2; i++){
+            switch (i) {
+                case 0:
+                    posicionActual = Posicion.avanzaCasillas(posicion, -1, 0);
+                    break;
+                default:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 1, 0);
+                    break;
+            }
+            lista.add(posicionActual);
+        }
+        return lista;
     }
 
     /**
@@ -260,7 +290,20 @@ public class Posicion {
      */
     public static Set<String> getEsteOeste(String posicion)
             throws PositionException {
-        throw new UnsupportedOperationException("Posicion::getEsteOeste. Todavía NO has implementado este método");
+        String posicionActual;
+        Set<String> lista = new HashSet<>();
+        for (int i = 0; i < 2; i++){
+            switch (i) {
+                case 0:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 0, 1);
+                    break;
+                default:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 0, -1);
+                    break;
+            }
+            lista.add(posicionActual);
+        }
+        return lista;
     }
 
     /**
@@ -287,7 +330,26 @@ public class Posicion {
      */
     public static Set<String> getAdyacentes(String posicion)
             throws PositionException {
-        throw new UnsupportedOperationException("Posicion::getAdyacentes. Todavía NO has implementado este método");
+        String posicionActual;
+        Set<String> lista = new HashSet<>();
+        for (int i = 0; i < 4; i++){
+            switch (i) {
+                case 0:
+                    posicionActual = Posicion.avanzaCasillas(posicion, -1, -1);
+                    break;
+                case 1:
+                    posicionActual = Posicion.avanzaCasillas(posicion, -1, 1);
+                    break;
+                case 2:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 1, -1);
+                    break;
+                default:
+                    posicionActual = Posicion.avanzaCasillas(posicion, 1, 1);
+                    break;
+            }
+            lista.add(posicionActual);
+        }
+        return lista;
     }
 
     /**
@@ -297,7 +359,20 @@ public class Posicion {
      * @return lista "A1","A2"..."A10"..,"J1","J2",..."J10"
      */
     public static List<String> todasLasCasillas() {
-        throw new UnsupportedOperationException("Posicion::todasLasCasillas. Todavía NO has implementado este método");
+        String origen = "A1";
+        String posicionActual;
+        List<String> lista = new ArrayList<>();
+        for (int i = 0; i < NUM_FILAS; i++){
+            for (int j = 0; j < NUM_COLUMNAS; j++){
+                try{
+                    posicionActual = Posicion.avanzaCasillas(origen, i, j);
+                } catch(PositionException e){
+                    posicionActual = e.getMessage();
+                }
+                lista.add(posicionActual);
+            }
+        }
+        return lista;
     }
 
     /**
