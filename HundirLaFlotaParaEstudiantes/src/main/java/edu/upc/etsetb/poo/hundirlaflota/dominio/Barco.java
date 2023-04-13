@@ -50,7 +50,7 @@ public class Barco {
      * posicionesTocadas como un conjunto vacío, e inicializa hundido a false.
      *
      * @param nombre el nombre del barco.
-     * @param lon el número de casillas que ocupa el barco en el tablero.
+     * @param lon    el número de casillas que ocupa el barco en el tablero.
      */
     protected Barco(String nombre, int lon) {
         this.nombre = nombre;
@@ -80,28 +80,28 @@ public class Barco {
      * nombre y devolverla.</li>
      * </ul>
      *
-     * @param tipo un string de un caracter indicativo del tipo de barco que hay
-     * que "fabricar".\n
+     * @param tipo   un string de un caracter indicativo del tipo de barco que hay
+     *               que "fabricar".\n
      * @param nombre el nombre del barco.
      * @return el barco creado
      */
     public static Barco creaBarco(String tipo, String nombre) {
         Barco barco;
-        switch (tipo.toUpperCase()){
+        switch (tipo.toUpperCase()) {
             case "L":
-                barco = new Barco(nombre, 1);
+                barco = new Lancha(nombre);
                 break;
             case "C":
-                barco = new Barco(nombre, 2);
+                barco = new Crucero(nombre);
                 break;
             case "S":
-                barco = new Barco(nombre, 3);
+                barco = new Submarino(nombre);
                 break;
             case "B":
-                barco = new Barco(nombre, 4);
+                barco = new Buque(nombre);
                 break;
             case "P":
-                barco = new Barco(nombre, 5);
+                barco = new Portaviones(nombre);
                 break;
             default:
                 barco = new Barco(nombre, 1);
@@ -124,14 +124,14 @@ public class Barco {
      * </ul>
      *
      * @param tipo un string de un caracter indicativo del tipo de barco cuya
-     * longitud hay que devolver.
+     *             longitud hay que devolver.
      * 
      * @return la longitud del tipo de barco pasado como argumento
      */
 
     public static int getLongitudDeTipoDeBarco(String tipo) {
         int lon = 0;
-        switch (tipo.toUpperCase()){
+        switch (tipo.toUpperCase()) {
             case "L":
                 lon = 1;
                 break;
@@ -225,11 +225,12 @@ public class Barco {
      * devuelve true; en caso contrario, devuelve false.
      *
      * @param pos la posición a la que se ha disparado y que ha tocado en el
-     * barco.
+     *            barco.
      *
      * @return true si después de añadir la posición a la lista de posiciones
-     * tocadas, dicha lista contiene todas las posiciones que ocupaba el barco;
-     * false en caso contrario.
+     *         tocadas, dicha lista contiene todas las posiciones que ocupaba el
+     *         barco;
+     *         false en caso contrario.
      */
     public boolean hundiraEsteTocado(String pos) {
         this.addPosicionTocada(pos);
@@ -273,5 +274,4 @@ public class Barco {
         return Objects.equals(this.posicionesTocadas, other.posicionesTocadas);
     }
 
-    
 }
