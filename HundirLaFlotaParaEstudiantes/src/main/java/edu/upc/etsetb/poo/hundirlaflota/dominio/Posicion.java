@@ -271,6 +271,9 @@ public class Posicion {
      *         casilla cuya posición se pasa como argumento, siempre que dichas
      *         casillas
      *         estén dentro del tablero
+     *         casilla cuya posición se pasa como argumento, siempre que dichas
+     *         casillas
+     *         estén dentro del tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
      *                           calculadas para añadir a la lista resultado NO es
@@ -314,6 +317,9 @@ public class Posicion {
      * @param posicion un string que contiene la posición
      *
      * @return una lista con las casillas que están al este y al oeste de la
+     *         casilla cuya posición se pasa como argumento, siempre que dichas
+     *         casillas
+     *         estén dentro del tablero
      *         casilla cuya posición se pasa como argumento, siempre que dichas
      *         casillas
      *         estén dentro del tablero
@@ -361,8 +367,12 @@ public class Posicion {
      * @return una lista con las casillas adyacentes a la casilla cuya posición
      *         se pasa como argumento, siempre que dichas casillas estén dentro del
      *         tablero
+     *         se pasa como argumento, siempre que dichas casillas estén dentro del
+     *         tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
+     *                           calculadas para añadir a la lista resultado NO es
+     *                           correcta
      *                           calculadas para añadir a la lista resultado NO es
      *                           correcta
      */
@@ -422,21 +432,30 @@ public class Posicion {
      * contrario, lanza una excepción.
      *
      * @param posicion  string que contiene la posición inicial;
+     * @param posicion  string que contiene la posición inicial;
      *
      * @param direccion string que contiene la dirección ("H" para dirección
+     *                  horizontal, "V" para dirección vertical).
      *                  horizontal, "V" para dirección vertical).
      *
      * @param lon       el número de casillas total (la de la posición inicial más
      *                  las
      *                  lon-1 de otras posiciones).
+     * @param lon       el número de casillas total (la de la posición inicial más
+     *                  las
+     *                  lon-1 de otras posiciones).
      *
+     * @param tablero   el tablero con barcos colocados en él
      * @param tablero   el tablero con barcos colocados en él
      *
      * @throws PositionException si alguna de las posiciones es contigua a una
      *                           posición de algún barco.
+     *                           posición de algún barco.
      */
     public static void checkNoContactaConOtro(String posicion, int lon,
             String direccion, Tablero tablero) throws PositionException {
+        throw new UnsupportedOperationException(
+                "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
         throw new UnsupportedOperationException(
                 "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
     }

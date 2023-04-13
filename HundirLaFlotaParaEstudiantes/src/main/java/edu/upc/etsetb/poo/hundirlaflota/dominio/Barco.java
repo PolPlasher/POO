@@ -4,6 +4,8 @@
  */
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -51,7 +53,11 @@ public class Barco {
      * @param lon el número de casillas que ocupa el barco en el tablero.
      */
     protected Barco(String nombre, int lon) {
-        throw new UnsupportedOperationException("Barco::Barco. Todavía NO has implementado este método");
+        this.nombre = nombre;
+        this.lon = lon;
+        posiciones = new ArrayList<>();
+        posicionesTocadas = new HashSet<>();
+        hundido = false;
     }
 
     /**
@@ -80,7 +86,28 @@ public class Barco {
      * @return el barco creado
      */
     public static Barco creaBarco(String tipo, String nombre) {
-        throw new UnsupportedOperationException("Barco::creaBarco. Todavía NO has implementado este método");
+        Barco barco;
+        switch (tipo.toUpperCase()){
+            case "L":
+                barco = new Barco(nombre, 1);
+                break;
+            case "C":
+                barco = new Barco(nombre, 2);
+                break;
+            case "S":
+                barco = new Barco(nombre, 3);
+                break;
+            case "B":
+                barco = new Barco(nombre, 4);
+                break;
+            case "P":
+                barco = new Barco(nombre, 5);
+                break;
+            default:
+                barco = new Barco(nombre, 1);
+                break;
+        }
+        return barco;
     }
 
     /**
@@ -103,7 +130,25 @@ public class Barco {
      */
 
     public static int getLongitudDeTipoDeBarco(String tipo) {
-        throw new UnsupportedOperationException("Barco::getLongitudDeTipoDeBarco. Todavía NO has implementado este método");
+        int lon = 0;
+        switch (tipo.toUpperCase()){
+            case "L":
+                lon = 1;
+                break;
+            case "C":
+                lon = 2;
+                break;
+            case "S":
+                lon = 3;
+                break;
+            case "B":
+                lon = 4;
+                break;
+            case "P":
+                lon = 5;
+                break;
+        }
+        return lon;
     }
 
     /**
@@ -121,7 +166,9 @@ public class Barco {
      *
      */
     public void addPosicionTocada(String pos) {
-        throw new UnsupportedOperationException("Barco::addPosicionTocada. Todavía NO has implementado este método");
+        posicionesTocadas.add(pos);
+        if (posicionesTocadas.equals(posiciones))
+            hundido = true;
     }
 
     /**
@@ -130,7 +177,7 @@ public class Barco {
      * @return the value of posiciones
      */
     public List<String> getPosiciones() {
-        throw new UnsupportedOperationException("Barco::getPosiciones. Todavía NO has implementado este método");
+        return posiciones;
     }
 
     /**
@@ -139,7 +186,7 @@ public class Barco {
      * @return the value of posicionesTocadas
      */
     public Set<String> getPosicionesTocadas() {
-        throw new UnsupportedOperationException("Barco::getPosicionesTocadas. Todavía NO has implementado este método");
+        return posicionesTocadas;
     }
 
     /**
@@ -148,7 +195,7 @@ public class Barco {
      * @param posiciones new value of posiciones
      */
     public void setPosiciones(List<String> posiciones) {
-        throw new UnsupportedOperationException("Barco::setPosiciones. Todavía NO has implementado este método");
+        this.posiciones = posiciones;
     }
 
     /**
@@ -157,7 +204,7 @@ public class Barco {
      * @return the value of hundido
      */
     public boolean isHundido() {
-        throw new UnsupportedOperationException("Barco::isHundido. Todavía NO has implementado este método");
+        return hundido;
     }
 
     /**
@@ -166,7 +213,7 @@ public class Barco {
      * @return the value of lon
      */
     public int getLon() {
-        throw new UnsupportedOperationException("Barco::getLon. Todavía NO has implementado este método");
+        return lon;
     }
 
     /**
@@ -185,7 +232,8 @@ public class Barco {
      * false en caso contrario.
      */
     public boolean hundiraEsteTocado(String pos) {
-        throw new UnsupportedOperationException("Barco::hundiraEsteTocado. Todavía NO has implementado este método");
+        this.addPosicionTocada(pos);
+        return hundido;
     }
 
     @Override
