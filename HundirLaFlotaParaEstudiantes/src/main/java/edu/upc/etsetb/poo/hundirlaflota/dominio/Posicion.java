@@ -50,7 +50,7 @@ public class Posicion {
      * fila y columna; NORTE:{-1,0}, ESTE:{0,1}, SUR:{1,0}, OESTE:{0,-1}
      */
     private static final int[][] DELTA_PUNTOS_CARDINALES = {
-        {-1, 0}, {0, 1}, {1, 0}, {0, -1}
+            { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 }
     };
 
     /**
@@ -59,7 +59,7 @@ public class Posicion {
      *
      * @param posicion la posición del tablero. Ejemplos: "A9", "F8", etc
      * @return devuelve el entero que identifica el número de fila que
-     * corresponde a esa posición
+     *         corresponde a esa posición
      */
     public static int filaCharToInt(String posicion) {
         return posicion.substring(0, 1).codePointAt(0) - Posicion.ORD_A + 1;
@@ -71,7 +71,7 @@ public class Posicion {
      *
      * @param intFila el número de fila
      * @return un String de un solo caracter: el carácter que identifica la fila
-     * en un string posición.
+     *         en un string posición.
      */
     public static String filaIntToFilaChar(int intFila) {
         int codePoint = Posicion.ORD_A + intFila - 1;
@@ -87,15 +87,16 @@ public class Posicion {
      * textual de un número en el intervalo cerrado [1,10].
      *
      * @param posStr un string representando una posición del tablero ("A10",
-     * por ejemplo).
+     *               por ejemplo).
      *
      * @return true si el primer caracter de pos está en el intervalo cerrado
-     * (incluye los extremos) ['A','J'] y el resto del string es la
-     * representación textual de un número en el intervalo cerrado [1,10]; false
-     * en caso contrario.
+     *         (incluye los extremos) ['A','J'] y el resto del string es la
+     *         representación textual de un número en el intervalo cerrado [1,10];
+     *         false
+     *         en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= NUM_FILAS){
+        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= NUM_FILAS) {
             int columna = Integer.parseInt(posStr.substring(1));
             if (columna >= 1 && columna <= NUM_COLUMNAS)
                 return true;
@@ -118,26 +119,30 @@ public class Posicion {
      * inicial. Si delta_c es negativo, la columna de la posición devuelta,
      * estará a la izquierda de la columna de la posición inicial.
      *
-     * @param posicion un string que contiene la posición inicial
+     * @param posicion  un string que contiene la posición inicial
      * @param deltaFila un entero que indica el incremento de fila
-     * @param deltaCol un entero que indica el incremento de columna
+     * @param deltaCol  un entero que indica el incremento de columna
      *
      * @return un string que indica la posición (fila de posición inicial +
-     * deltaFila, columna de posición inicial + deldeltaColta_c). Por ejemplo,
-     * si la posición inicial es "C5", deltaFila es -1 y deltaCol es +2, la
-     * posición a devolver sería "B7"
+     *         deltaFila, columna de posición inicial + deldeltaColta_c). Por
+     *         ejemplo,
+     *         si la posición inicial es "C5", deltaFila es -1 y deltaCol es +2, la
+     *         posición a devolver sería "B7"
      *
      * @throws PositionException si el argumento "posicion" no indica una
-     * posición correcta, o si la posición resultante de aplicar los cálculos de
-     * deltaFila y deltaCol a la posición indicada por el argumento "posicion",
-     * no es una posición correcta
+     *                           posición correcta, o si la posición resultante de
+     *                           aplicar los cálculos de
+     *                           deltaFila y deltaCol a la posición indicada por el
+     *                           argumento "posicion",
+     *                           no es una posición correcta
      */
     public static String avanzaCasillas(String posicion,
             int deltaFila, int deltaCol) throws PositionException {
         if (!Posicion.esCorrecta(posicion)) {
             throw new PositionException(posicion);
         } else {
-            String resultado = Posicion.filaIntToFilaChar(Posicion.filaCharToInt(posicion) + deltaFila) + Integer.toString(Integer.parseInt(posicion.substring(1)) + deltaCol);
+            String resultado = Posicion.filaIntToFilaChar(Posicion.filaCharToInt(posicion) + deltaFila)
+                    + Integer.toString(Integer.parseInt(posicion.substring(1)) + deltaCol);
             if (Posicion.esCorrecta(resultado)) {
                 return resultado;
             } else {
@@ -158,25 +163,31 @@ public class Posicion {
      * Posicion.es_correcta y Posicion::avanzaCasillas.
      *
      * @param posicionDireccion un array de dos Strings: el primero contiene la
-     * posición inicial; el segundo es la dirección ("H" para dirección
-     * horizontal, "V" para dirección vertical).
+     *                          posición inicial; el segundo es la dirección ("H"
+     *                          para dirección
+     *                          horizontal, "V" para dirección vertical).
      *
-     * @param numCasillas el número de casillas total (la de la posición inicial
-     * más las numCasillas-1 de otras posiciones).
+     * @param numCasillas       el número de casillas total (la de la posición
+     *                          inicial
+     *                          más las numCasillas-1 de otras posiciones).
      *
      * @throws PositionException si alguna de las posiciones no es correcta; el
-     * argumento del constructor del objeto PositionException indica la posición
-     * que no es correcta.
+     *                           argumento del constructor del objeto
+     *                           PositionException indica la posición
+     *                           que no es correcta.
      */
     public static void checkPosicionesCorrectas(String[] posicionDireccion,
             int numCasillas) throws PositionException {
-        String posicionActual;
-        if (posicionDireccion[1].equals(HORIZONTAL)){
+        String posicionActual = "";
+        if (posicionDireccion[1].equals(HORIZONTAL)) {
             for (int i = 0; i < numCasillas; i++)
                 posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
-        } else if (posicionDireccion[1].equals(VERTICAL)){
+        } else if (posicionDireccion[1].equals(VERTICAL)) {
             for (int i = 0; i < numCasillas; i++)
                 posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
+        }
+        if (!Posicion.esCorrecta(posicionActual)) {
+            throw new PositionException(posicionActual);
         }
     }
 
@@ -196,34 +207,57 @@ public class Posicion {
      * @param posicion un string que contiene la posición
      *
      * @return una lista con las casillas que están al norte, este, sur y oeste
-     * de la casilla cuya posición se pasa como argumento, siempre que dichas
-     * casillas estén dentro del tablero
+     *         de la casilla cuya posición se pasa como argumento, siempre que
+     *         dichas
+     *         casillas estén dentro del tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
-     * calculadas para añadir a la lista resultado NO es correcta
+     *                           calculadas para añadir a la lista resultado NO es
+     *                           correcta
      */
     public static List<String> getPuntosCardinales(String posicion)
             throws PositionException {
-        String posicionActual;
+        String posicionActual = "";
         List<String> lista = new ArrayList<>();
-        for (int i = 0; i < 4; i++){
+
+        if (!Posicion.esCorrecta(posicion)) {
+            throw new PositionException();
+        }
+
+        for (int i = 0; i < 4; i++) {
+            boolean posCorrecta = false;
             switch (i) {
                 case 0:
-                    posicionActual = Posicion.avanzaCasillas(posicion, -1, 0);
+                    if (Posicion.esCorrecta(Posicion.avanzaCasillas(posicion, -1, 0))) {
+                        posicionActual = Posicion.avanzaCasillas(posicion, -1, 0);
+                        posCorrecta = true;
+                    }
                     break;
                 case 1:
-                    posicionActual = Posicion.avanzaCasillas(posicion, 0, 1);
+                    if (Posicion.esCorrecta(Posicion.avanzaCasillas(posicion, 0, 1))) {
+                        posicionActual = Posicion.avanzaCasillas(posicion, 0, 1);
+                        posCorrecta = true;
+                    }
                     break;
                 case 2:
-                    posicionActual = Posicion.avanzaCasillas(posicion, 1, 0);
+                    if (Posicion.esCorrecta(Posicion.avanzaCasillas(posicion, 0, -1))) {
+                        posicionActual = Posicion.avanzaCasillas(posicion, 0, -1);
+                        posCorrecta = true;
+                    }
                     break;
                 default:
-                    posicionActual = Posicion.avanzaCasillas(posicion, 0, -1);
+                    if (Posicion.esCorrecta(Posicion.avanzaCasillas(posicion, 1, 0))) {
+                        posicionActual = Posicion.avanzaCasillas(posicion, 1, 0);
+                        posCorrecta = true;
+                    }
                     break;
             }
-            lista.add(posicionActual);
+            if (posCorrecta) {
+                lista.add(posicionActual);
+            }
         }
         return lista;
+
     }
 
     /**
@@ -242,17 +276,19 @@ public class Posicion {
      * @param posicion un string que contiene la posición
      *
      * @return una lista con las casillas que están al norte y al sur de la
-     * casilla cuya posición se pasa como argumento, siempre que dichas casillas
-     * estén dentro del tablero
+     *         casilla cuya posición se pasa como argumento, siempre que dichas
+     *         casillas
+     *         estén dentro del tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
-     * calculadas para añadir a la lista resultado NO es correcta
+     *                           calculadas para añadir a la lista resultado NO es
+     *                           correcta
      */
     public static Set<String> getNorteSur(String posicion)
             throws PositionException {
         String posicionActual;
         Set<String> lista = new HashSet<>();
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             switch (i) {
                 case 0:
                     posicionActual = Posicion.avanzaCasillas(posicion, -1, 0);
@@ -282,17 +318,19 @@ public class Posicion {
      * @param posicion un string que contiene la posición
      *
      * @return una lista con las casillas que están al este y al oeste de la
-     * casilla cuya posición se pasa como argumento, siempre que dichas casillas
-     * estén dentro del tablero
+     *         casilla cuya posición se pasa como argumento, siempre que dichas
+     *         casillas
+     *         estén dentro del tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
-     * calculadas para añadir a la lista resultado NO es correcta
+     *                           calculadas para añadir a la lista resultado NO es
+     *                           correcta
      */
     public static Set<String> getEsteOeste(String posicion)
             throws PositionException {
         String posicionActual;
         Set<String> lista = new HashSet<>();
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             switch (i) {
                 case 0:
                     posicionActual = Posicion.avanzaCasillas(posicion, 0, 1);
@@ -322,17 +360,18 @@ public class Posicion {
      * @param posicion un string que contiene una posición ("A6" por ejemplo)
      *
      * @return una lista con las casillas adyacentes a la casilla cuya posición
-     * se pasa como argumento, siempre que dichas casillas estén dentro del
-     * tablero
+     *         se pasa como argumento, siempre que dichas casillas estén dentro del
+     *         tablero
      *
      * @throws PositionException si la posición pasada o alguna de las
-     * calculadas para añadir a la lista resultado NO es correcta
+     *                           calculadas para añadir a la lista resultado NO es
+     *                           correcta
      */
     public static Set<String> getAdyacentes(String posicion)
             throws PositionException {
         String posicionActual;
         Set<String> lista = new HashSet<>();
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             switch (i) {
                 case 0:
                     posicionActual = Posicion.avanzaCasillas(posicion, -1, -1);
@@ -362,11 +401,11 @@ public class Posicion {
         String origen = "A1";
         String posicionActual;
         List<String> lista = new ArrayList<>();
-        for (int i = 0; i < NUM_FILAS; i++){
-            for (int j = 0; j < NUM_COLUMNAS; j++){
-                try{
+        for (int i = 0; i < NUM_FILAS; i++) {
+            for (int j = 0; j < NUM_COLUMNAS; j++) {
+                try {
                     posicionActual = Posicion.avanzaCasillas(origen, i, j);
-                } catch(PositionException e){
+                } catch (PositionException e) {
                     posicionActual = e.getMessage();
                 }
                 lista.add(posicionActual);
@@ -390,22 +429,24 @@ public class Posicion {
      * con algún barco, el método acaba su ejecución silenciosamente; en caso
      * contrario, lanza una excepción.
      *
-     * @param posicion string que contiene la posición inicial;
+     * @param posicion  string que contiene la posición inicial;
      *
      * @param direccion string que contiene la dirección ("H" para dirección
-     * horizontal, "V" para dirección vertical).
+     *                  horizontal, "V" para dirección vertical).
      *
-     * @param lon el número de casillas total (la de la posición inicial más las
-     * lon-1 de otras posiciones).
+     * @param lon       el número de casillas total (la de la posición inicial más
+     *                  las
+     *                  lon-1 de otras posiciones).
      *
-     * @param tablero el tablero con barcos colocados en él
+     * @param tablero   el tablero con barcos colocados en él
      *
      * @throws PositionException si alguna de las posiciones es contigua a una
-     * posición de algún barco.
+     *                           posición de algún barco.
      */
     public static void checkNoContactaConOtro(String posicion, int lon,
             String direccion, Tablero tablero) throws PositionException {
-        throw new UnsupportedOperationException("Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
     }
 
 }
