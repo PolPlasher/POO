@@ -51,8 +51,8 @@ public class Impresora {
 
     public String toString() {
         String info = "Impresora: " + this.nombre + "\nTrabajos actualmente en cola:\n";
-        for (Trabajo i : cola) {
-            info += i.toString();
+        for (int i = 0; i < cola.size(); i++) {
+            info += cola.get(i).toString();
         }
         return info;
     }
