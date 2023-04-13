@@ -417,12 +417,6 @@ public class Posicion {
     }
 
     /**
-     * Dada una posición inicial, un número de casillas lon, una dirección y el
-     * tablero con barcos,comprueba si alguna de las casillas del conjunto
-     * formado por la casilla en la posición inicial y las casillas que están en
-     * las lon-1 posiciones siguientes en la dirección indicada, NO contactan
-     * con ningún barco previamente colocado en el tablero.
-     *
      * Dada una posición inicial, un número de casillas lon, una dirección y y
      * el tablero con barcos, comprueba si alguna de las casillas del conjunto
      * formado por la casilla en la posición inicial y las casillas que están en
@@ -432,8 +426,9 @@ public class Posicion {
      * contrario, lanza una excepción.
      *
      * @param posicion  string que contiene la posición inicial;
-     * @param posicion  string que contiene la posición inicial;
-     *
+     * 
+
+    
      * @param direccion string que contiene la dirección ("H" para dirección
      *                  horizontal, "V" para dirección vertical).
      *                  horizontal, "V" para dirección vertical).
@@ -441,11 +436,8 @@ public class Posicion {
      * @param lon       el número de casillas total (la de la posición inicial más
      *                  las
      *                  lon-1 de otras posiciones).
-     * @param lon       el número de casillas total (la de la posición inicial más
-     *                  las
-     *                  lon-1 de otras posiciones).
-     *
-     * @param tablero   el tablero con barcos colocados en él
+     * 
+
      * @param tablero   el tablero con barcos colocados en él
      *
      * @throws PositionException si alguna de las posiciones es contigua a una
@@ -454,8 +446,6 @@ public class Posicion {
      */
     public static void checkNoContactaConOtro(String posicion, int lon,
             String direccion, Tablero tablero) throws PositionException {
-        throw new UnsupportedOperationException(
-                "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
         throw new UnsupportedOperationException(
                 "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
     }
