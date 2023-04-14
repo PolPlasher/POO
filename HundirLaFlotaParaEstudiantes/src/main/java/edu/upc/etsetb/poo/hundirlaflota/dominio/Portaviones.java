@@ -8,10 +8,9 @@ package edu.upc.etsetb.poo.hundirlaflota.dominio;
  *
  * @author Juan Carlos Cruellas at Universidad Politécnica de Cataluña
  */
-public class Portaviones extends Barco{
-    
-    public Portaviones(String nombre){
-        super(nombre,5);
-        throw new UnsupportedOperationException("Portaviones::Portaviones. Todavía NO has implementado este método");
+public class Portaviones extends Barco {
+
+    public Portaviones(String nombre) {
+        super(nombre, 5);
     }
 }

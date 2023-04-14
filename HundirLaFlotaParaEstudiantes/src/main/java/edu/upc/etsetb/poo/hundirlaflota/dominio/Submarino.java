@@ -8,18 +8,18 @@ package edu.upc.etsetb.poo.hundirlaflota.dominio;
  *
  * @author Juan Carlos Cruellas at Universidad Politécnica de Cataluña
  */
-public class Submarino extends Barco{
-    
-    /**Inicializa el submarino.
-    *
-    * Inicializa el atributo nom el valor del argumento. Inicializa el atributo 
-    * lon a 3. Crea posiciones como una lista vacía, crea el conjunto 
-    * posTocadas como un conjunto vacío y hundido a false.
-    *
-    * @param nombre   el nombre del barco.
-    */    
-    public Submarino(String nombre){
-        super(nombre,3);
-        throw new UnsupportedOperationException("Submarino::Submarino. Todavía NO has implementado este método");
+public class Submarino extends Barco {
+
+    /**
+     * Inicializa el submarino.
+     *
+     * Inicializa el atributo nom el valor del argumento. Inicializa el atributo
+     * lon a 3. Crea posiciones como una lista vacía, crea el conjunto
+     * posTocadas como un conjunto vacío y hundido a false.
+     *
+     * @param nombre el nombre del barco.
+     */
+    public Submarino(String nombre) {
+        super(nombre, 3);
     }
 }

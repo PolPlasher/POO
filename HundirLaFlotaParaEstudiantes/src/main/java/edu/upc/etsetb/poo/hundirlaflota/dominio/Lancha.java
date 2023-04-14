@@ -8,18 +8,18 @@ package edu.upc.etsetb.poo.hundirlaflota.dominio;
  *
  * @author Juan Carlos Cruellas at Universidad Politécnica de Cataluña
  */
-public class Lancha extends Barco{
-    
-    /**Inicializa la lancha.
-    *
-    * Inicializa el atributo nom el valor del argumento. Inicializa el atributo 
-    * lon a 1. Crea posiciones como una lista vacía, crea el conjunto 
-    * posTocadas como un conjunto vacío y hundido a false.
-    *
-    * @param nombre   el nombre del barco.
-    */     
-    public Lancha(String nombre){
-        super(nombre,1);
-        throw new UnsupportedOperationException("Lancha::Lancha. Todavía NO has implementado este método");
+public class Lancha extends Barco {
+
+    /**
+     * Inicializa la lancha.
+     *
+     * Inicializa el atributo nom el valor del argumento. Inicializa el atributo
+     * lon a 1. Crea posiciones como una lista vacía, crea el conjunto
+     * posTocadas como un conjunto vacío y hundido a false.
+     *
+     * @param nombre el nombre del barco.
+     */
+    public Lancha(String nombre) {
+        super(nombre, 1);
     }
 }
