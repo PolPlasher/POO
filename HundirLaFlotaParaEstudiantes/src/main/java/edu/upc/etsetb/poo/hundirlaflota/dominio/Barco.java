@@ -167,7 +167,7 @@ public class Barco {
      */
     public void addPosicionTocada(String pos) {
         posicionesTocadas.add(pos);
-        if (posicionesTocadas.equals(posiciones))
+        if (posicionesTocadas.size() == lon)
             hundido = true;
     }
 
