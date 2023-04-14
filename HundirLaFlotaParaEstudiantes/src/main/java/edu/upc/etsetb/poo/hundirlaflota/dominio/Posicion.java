@@ -427,8 +427,8 @@ public class Posicion {
      *
      * @param posicion  string que contiene la posición inicial;
      * 
-
-    
+     * 
+     * 
      * @param direccion string que contiene la dirección ("H" para dirección
      *                  horizontal, "V" para dirección vertical).
      *                  horizontal, "V" para dirección vertical).
@@ -437,7 +437,7 @@ public class Posicion {
      *                  las
      *                  lon-1 de otras posiciones).
      * 
-
+     * 
      * @param tablero   el tablero con barcos colocados en él
      *
      * @throws PositionException si alguna de las posiciones es contigua a una

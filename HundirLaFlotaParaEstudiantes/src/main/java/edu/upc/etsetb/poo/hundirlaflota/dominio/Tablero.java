@@ -4,6 +4,9 @@
  */
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +37,8 @@ public class Tablero {
      * una lista vacía
      */
     public Tablero() {
-        throw new UnsupportedOperationException("Tablero::Tablero. Todavía NO has implementado este método");
+        casillas = new HashMap<>();
+        disparosAAgua = new ArrayList<>();
     }
 
     /**
@@ -44,10 +48,10 @@ public class Tablero {
      * @param pos string identificando la posición ("A6" por ejemplo).
      *
      * @return el barco que está en esa posición o null si no hay ningún barco
-     * en ella.
+     *         en ella.
      */
     public Barco getBarcoEn(String pos) {
-        throw new UnsupportedOperationException("Tablero::getBarcoEn. Todavía NO has implementado este método");
+        return casillas.get(pos);
     }
 
     /**
@@ -57,7 +61,7 @@ public class Tablero {
      * @return el conjunto de la lista de las claves del mapa casillas
      */
     public Set<String> getPosicionesBarcos() {
-        throw new UnsupportedOperationException("Tablero::getPosicionesBarcos. Todavía NO has implementado este método");
+        return casillas.keySet();
     }
 
     /**
@@ -66,7 +70,7 @@ public class Tablero {
      * @return the value of disparosAlAgua
      */
     public List<String> getDisparosAAgua() {
-        throw new UnsupportedOperationException("Tablero::getDisparosAAgua. Todavía NO has implementado este método");
+        return disparosAAgua;
     }
 
     /**
@@ -75,7 +79,7 @@ public class Tablero {
      * @return the value of casillas
      */
     public Map<String, Barco> getCasillas() {
-        throw new UnsupportedOperationException("Tablero::getCasillas. Todavía NO has implementado este método");
+        return casillas;
     }
 
     /**
@@ -84,7 +88,7 @@ public class Tablero {
      * @param casillas new value of casillas
      */
     public void setCasillas(Map<String, Barco> casillas) {
-        throw new UnsupportedOperationException("Tablero::setCasillas. Todavía NO has implementado este método");
+        this.casillas = casillas;
     }
 
     /**
@@ -100,20 +104,28 @@ public class Tablero {
      * (posición, barco) en el mapa casillas</li>
      * </ol>
      *
-     * @param barco el barco que quiere ponerse en el tablero
+     * @param barco     el barco que quiere ponerse en el tablero
      *
-     * @param posicion la posición a partir de la cual quiere depositarse el
-     * barco ("A6", por ejemplo)
+     * @param posicion  la posición a partir de la cual quiere depositarse el
+     *                  barco ("A6", por ejemplo)
      *
      * @param direccion "H" (horizontal) o "V" (vertical).
      *
      * @throws PositionException si alguna de las posiciones no es correcta o si
-     * alguna de las posiciones contacta on algún barco.
+     *                           alguna de las posiciones contacta on algún barco.
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
-        throw new UnsupportedOperationException("Tablero::ponBarco. Todavía NO has implementado este método");
-    }
+    /*
+     * NO COMPLETADO
+     * if (!Posicion.esCorrecta(posicion)) {
+     * throw new PositionException(posicion);
+     * }
+     * Posicion.checkPosicionesCorrectas(new String[] {posicion, direccion},
+     * barco.getLon());
+     * Set<String> conjunto = new HashSet<>();
+     * }
+     */
 
     /**
      * Añade al atributo disparosAAgua la posición pasada como argumento.
@@ -129,11 +141,13 @@ public class Tablero {
      * en el argumento pos.
      *
      * @return el contenido de la casilla que ocupa la posición indicada en el
-     * argumento pos (un barco o null si no hay ningún barco en esa casilla).
+     *         argumento pos (un barco o null si no hay ningún barco en esa
+     *         casilla).
      * 
      * @param pos la posición de la casilla
      */
     public Barco getContenidoCasilla(String pos) {
-        throw new UnsupportedOperationException("Tablero::getContenidoCasilla. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "Tablero::getContenidoCasilla. Todavía NO has implementado este método");
     }
 }
