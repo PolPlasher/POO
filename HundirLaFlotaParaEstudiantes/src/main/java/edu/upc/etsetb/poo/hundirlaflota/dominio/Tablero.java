@@ -124,8 +124,8 @@ public class Tablero {
      * Posicion.checkPosicionesCorrectas(new String[] {posicion, direccion},
      * barco.getLon());
      * Set<String> conjunto = new HashSet<>();
-     * }
      */
+     }
 
     /**
      * Añade al atributo disparosAAgua la posición pasada como argumento.
