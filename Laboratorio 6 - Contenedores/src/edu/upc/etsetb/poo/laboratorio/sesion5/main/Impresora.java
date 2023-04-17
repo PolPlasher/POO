@@ -4,6 +4,7 @@
  */
 package edu.upc.etsetb.poo.laboratorio.sesion5.main;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -24,7 +25,6 @@ public class Impresora {
         this.cola.add(trabajo);
     }
 
-    //  A partir de aqui no se yo que se
     public boolean procesaSiguienteTrabajo() {
         boolean vacia = cola.peek() == null;
         cola.removeFirst();
@@ -36,17 +36,19 @@ public class Impresora {
         for (Trabajo i : cola) {
             if (i.getId() == id) {
                 trabajoEncontrado = true;
-                cola.addFirst(i);
                 cola.remove(i);
+                cola.addFirst(i);
             }
         }
         return trabajoEncontrado;
     }
 
     public void limitaLongitudCola(int maxTrabajos) {
-        for (int i = maxTrabajos; i < cola.size(); i++) {
-            cola.remove(i);
+        Iterator iterator = cola.iterator();
+        while(iterator.hasNext()) {
+           // if (iterator.next())
         }
+
     }
 
     public String toString() {
