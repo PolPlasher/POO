@@ -446,8 +446,36 @@ public class Posicion {
      */
     public static void checkNoContactaConOtro(String posicion, int lon,
             String direccion, Tablero tablero) throws PositionException {
-        throw new UnsupportedOperationException(
-                "Posicion::checkNoContactaConOtro. Todavía NO has implementado este método");
+        String posicionActual;
+        String[] adyacentes = new String[4];
+        if (direccion.equals(HORIZONTAL)){
+            for (int i = 0; i < lon; i++){
+                posicionActual = Posicion.avanzaCasillas(posicion, 0, i);
+                for (int j = 0; j < 4; j++){
+                    if (tablero.getPosicionesBarcos().contains(Posicion.getPuntosCardinales(posicionActual).get(j)))
+                        throw new PositionException(posicionActual);
+                }
+                Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
+                for (int j = 0; j < 4; j++){
+                    if (tablero.getPosicionesBarcos().contains(adyacentes[j]))
+                        throw new PositionException(posicionActual);
+                }
+            }
+        }
+        else if (direccion.equals(VERTICAL)){
+            for (int i = 0; i < lon; i++){
+                posicionActual = Posicion.avanzaCasillas(posicion, i, 0);
+                for (int j = 0; j < 4; j++){
+                    if (tablero.getPosicionesBarcos().contains(Posicion.getPuntosCardinales(posicionActual).get(j)))
+                        throw new PositionException(posicionActual);
+                }
+                Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
+                for (int j = 0; j < 4; j++){
+                    if (tablero.getPosicionesBarcos().contains(adyacentes[j]))
+                        throw new PositionException(posicionActual);
+                }
+            }
+        }
     }
 
 }
