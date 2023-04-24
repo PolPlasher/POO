@@ -29,11 +29,13 @@ public class Item {
         this.value = value;
     }
 
-    /** Retorna una String amb el valor dels atributs de l'Item.
+    /**
+     * Retorna una String amb el valor dels atributs de l'Item.
+     * 
      * @return la descripció textual de l'Item
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[" + this.name + ", valor " + this.value + ", car " + this.encumbrance + "] " + this.description;
     }
 }

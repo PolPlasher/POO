@@ -7,7 +7,6 @@ import laberint.excepcions.LaberintException;
 /** Atributs i mètodes de l'Aventurer. */
 public class Adventurer {
 
-    
     private Room currentLocation;
     private int encumbrance;
     private Treemap<String, Item> inventory;
@@ -20,7 +19,8 @@ public class Adventurer {
         this.currentLocation = startLocation;
     }
 
-    //  Fa que l'aventurer deixi caure un item (l'item s'extreu de l'inventari i s'afegeix a la sala actual).
+    // Fa que l'aventurer deixi caure un item (l'item s'extreu de l'inventari i
+    // s'afegeix a la sala actual).
     public void drop(String itemName) {
 
     }
@@ -33,7 +33,10 @@ public class Adventurer {
         return name;
     }
 
-    /** Retorna un String amb les dades de tots els items de l'inventari de l'aventurer.
+    /**
+     * Retorna un String amb les dades de tots els items de l'inventari de
+     * l'aventurer.
+     * 
      * @return Iterador.
      */
     public String inventoryToString() {

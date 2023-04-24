@@ -7,9 +7,8 @@ import java.util.Iterator;
 /** Atributs i mètodes d'una sala del laberint. */
 public class Room {
 
-
     private final String description;
-    private final Map<String, Room> exits;
+    private Map<String, Room> exits;
     private Map<String, Item> items;
     private final String name;
 
@@ -18,7 +17,7 @@ public class Room {
         this.description = description;
     }
 
-    //  Connecta unidireccionalment aquesta sala amb una altra.
+    // Connecta unidireccionalment aquesta sala amb una altra.
     public void connect(Room destination, String exitName) {
 
     }
@@ -27,7 +26,7 @@ public class Room {
         return this.name;
     }
 
-    //  Retorna la sala a la qual s'accedeix per una sortida donada.
+    // Retorna la sala a la qual s'accedeix per una sortida donada.
     public Room nextRoom(String exitName) {
         return 0;
     }
@@ -40,17 +39,19 @@ public class Room {
 
     }
 
-    /** Retorna una String amb el valor actual dels atributs de la Room.
+    /**
+     * Retorna una String amb el valor actual dels atributs de la Room.
+     * 
      * @return la String.
      */
     @Override
-    public String toString(){
+    public String toString() {
         String text = "[" + this.getName() + "]\n";
         text += this.description + "\n";
         Iterator<String> itemNames = this.items.keySet().iterator();
         if (itemNames.hasNext() == false) {
             text += "No hi ha cap item en aquesta sala.\n";
-        } else {            
+        } else {
             while (itemNames.hasNext()) {
                 String itName = itemNames.next();
                 text += "Pots veure que hi ha un item [" + itName + "].\n";
