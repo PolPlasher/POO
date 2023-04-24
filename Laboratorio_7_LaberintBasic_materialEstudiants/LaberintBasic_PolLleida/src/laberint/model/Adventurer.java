@@ -15,8 +15,6 @@ public class Adventurer {
     private static final int MAX_ENCUMBRANCE = 15;
     private final String name;
 
-
-    //  Constructor
     public Adventurer(String name, Room startLocation) {
         this.name = name;
         this.currentLocation = startLocation;
@@ -27,9 +25,12 @@ public class Adventurer {
 
     }
 
-    //  Obté la ubicació actual de l'aventurer.
     public Room getCurrentLocation() {
-        return 0;
+        return currentLocation;
+    }
+
+    public String getName() {
+        return name;
     }
 
     /** Retorna un String amb les dades de tots els items de l'inventari de l'aventurer.
@@ -49,13 +50,14 @@ public class Adventurer {
         return text;
     }
 
-    //  Fa que l'aventurer es mogui cap a una de les sortides de la sala actual.
-    public void move(String exitName) {
-        
+    public void move(String exitName) throws LaberintException {
+        if (!currentLocation.exits.containsKey(exitName)) {
+            throw new LaberintException("No such exit");
+        }
+        currentLocation = currentlocation.exits.get(exitName);
     }
 
-    //  Fa que l'aventurer agafi un item.
     public void pickUp(String itemName) {
-        
+
     }
 }
