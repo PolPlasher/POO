@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"laberint.controller"},{"l":"laberint.excepcions"},{"l":"laberint.model"},{"l":"laberint.userinterface"}];updateSearchResults();
