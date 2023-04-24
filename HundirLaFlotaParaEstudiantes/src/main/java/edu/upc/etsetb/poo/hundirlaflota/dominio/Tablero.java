@@ -116,16 +116,17 @@ public class Tablero {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
-    /*
-     * NO COMPLETADO
-     * if (!Posicion.esCorrecta(posicion)) {
-     * throw new PositionException(posicion);
-     * }
-     * Posicion.checkPosicionesCorrectas(new String[] {posicion, direccion},
-     * barco.getLon());
-     * Set<String> conjunto = new HashSet<>();
-     */
-     }
+        /*
+         * METODO NO NECESARIO PARA LA PRIMERA ENTREGA
+         * if (!Posicion.esCorrecta(posicion)) {
+         * throw new PositionException(posicion);
+         * }
+         * Posicion.checkPosicionesCorrectas(new String[] { posicion, direccion },
+         * barco.getLon());
+         * 
+         */
+
+    }
 
     /**
      * Añade al atributo disparosAAgua la posición pasada como argumento.
@@ -133,7 +134,7 @@ public class Tablero {
      * @param pos un string identificando la posición.
      */
     public void anotaAguaEnHumano(String pos) {
-        throw new UnsupportedOperationException("Tablero::anotaAguaEnHumano. Todavía NO has implementado este método");
+        disparosAAgua.add(pos);
     }
 
     /**
@@ -147,7 +148,6 @@ public class Tablero {
      * @param pos la posición de la casilla
      */
     public Barco getContenidoCasilla(String pos) {
-        throw new UnsupportedOperationException(
-                "Tablero::getContenidoCasilla. Todavía NO has implementado este método");
+        return getBarcoEn(pos);
     }
 }
