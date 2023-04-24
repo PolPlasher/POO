@@ -6,6 +6,40 @@ import java.util.Iterator;
 
 /** Atributs i mètodes d'una sala del laberint. */
 public class Room {
+
+
+    private final String description;
+    private final Map<String, Room> exits;
+    private Map<String, Item> items;
+    private final String name;
+
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    //  Connecta unidireccionalment aquesta sala amb una altra.
+    public void connect(Room destination, String exitName) {
+
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    //  Retorna la sala a la qual s'accedeix per una sortida donada.
+    public Room nextRoom(String exitName) {
+        return 0;
+    }
+
+    public void putItem(Item item) {
+
+    }
+
+    public Item retrieveItem(String itemName) {
+
+    }
+
     /** Retorna una String amb el valor actual dels atributs de la Room.
      * @return la String.
      */
