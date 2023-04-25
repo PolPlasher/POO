@@ -19,7 +19,11 @@ public class Room {
 
     // Connecta unidireccionalment aquesta sala amb una altra.
     public void connect(Room destination, String exitName) {
-
+        try{
+        exits.put(exitName, destination);
+        } catch (Exception e) {
+            throw new LaberintException("");
+        }
     }
 
     public String getName() {
