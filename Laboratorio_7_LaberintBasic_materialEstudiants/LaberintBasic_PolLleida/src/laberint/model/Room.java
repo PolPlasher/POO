@@ -36,7 +36,7 @@ public class Room {
     }
 
     public Item retrieveItem(String itemName) {
-
+        return 0;
     }
 
     /**

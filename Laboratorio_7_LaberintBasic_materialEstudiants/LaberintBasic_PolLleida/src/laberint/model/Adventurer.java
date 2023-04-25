@@ -54,7 +54,8 @@ public class Adventurer {
     }
 
     public void move(String exitName) throws LaberintException {
-        if (!currentLocation.exits.containsKey(exitName)) {
+        //  WIP
+        if (currentLocation.nextRoom(exitName)) {
             throw new LaberintException("No such exit");
         }
         currentLocation = currentlocation.exits.get(exitName);
