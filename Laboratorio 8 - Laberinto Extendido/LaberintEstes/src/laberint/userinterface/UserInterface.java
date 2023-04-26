@@ -15,16 +15,16 @@ public class UserInterface {
      * Diferents maneres que l'usuari/a pot fer servir per escriure cada
      * comanda.
      */
-    private static final String[] ORDER_MOVE = {"M", "Mou", "Mueve", "Move"};
-    private static final String[] ORDER_PICKUP = {"A", "Agafa", "Coje", "Pick"};
-    private static final String[] ORDER_DROP = {"D", "Deixa", "Suelta", "Drop"};
-    private static final String[] ORDER_INVENTORY = {"I", "Inventari", "Inventario", "Inventori"};
-    private static final String[] ORDER_HELP = {"J", "Ajuda", "Ayuda", "H", "Help"};
+    private static final String[] ORDER_MOVE = { "M", "Mou", "Mueve", "Move" };
+    private static final String[] ORDER_PICKUP = { "A", "Agafa", "Coje", "Pick" };
+    private static final String[] ORDER_DROP = { "D", "Deixa", "Suelta", "Drop" };
+    private static final String[] ORDER_INVENTORY = { "I", "Inventari", "Inventario", "Inventori" };
+    private static final String[] ORDER_HELP = { "J", "Ajuda", "Ayuda", "H", "Help" };
     /**
      * LabEstes.
      */
-    private static final String[] ORDER_USE = {"U", "Utilitza", "Usa", "Use"};
-    private static final String[] ORDER_QUIT = {"F", "Fi"};
+    private static final String[] ORDER_USE = { "U", "Utilitza", "Usa", "Use" };
+    private static final String[] ORDER_QUIT = { "F", "Fi" };
 
     private final Controller controller;
 
@@ -53,7 +53,8 @@ public class UserInterface {
      */
     private void start() {
         if (Room.SHOW_SECRET_ELEMENTS) {
-            IOoperations.writeString("ATENCIÓ, Room.SHOW_SECRET_ELEMENTS = true, programa en proves! Es mostren els elements secrets!\n");
+            IOoperations.writeString(
+                    "ATENCIÓ, Room.SHOW_SECRET_ELEMENTS = true, programa en proves! Es mostren els elements secrets!\n");
         }
         IOoperations.writeString("Selecciona el nom de l'aventurer: ");
         String adventurerName = IOoperations.readLine();
@@ -78,10 +79,10 @@ public class UserInterface {
                     // Inventory
                     if (simpleMatch(UserInterface.ORDER_INVENTORY, command)) {
                         this.controller.showInventory();
-                    } //Help
+                    } // Help
                     else if (simpleMatch(UserInterface.ORDER_HELP, command)) {
                         this.showHelp();
-                    } //Quit
+                    } // Quit
                     else if (this.simpleMatch(UserInterface.ORDER_QUIT, command)) {
                         play = false;
                         IOoperations.writeString("Fi del joc...\n");
@@ -111,7 +112,8 @@ public class UserInterface {
                                 IOoperations.writeString("Agafes l'item " + arguments[1] + ".\n");
                                 break;
                             case Adventurer.INVENTORY_IS_FULL:
-                                IOoperations.writeString("Ja no pots agafar mes items. Has de deixar alguna cosa abans.\n");
+                                IOoperations
+                                        .writeString("Ja no pots agafar mes items. Has de deixar alguna cosa abans.\n");
                                 break;
                             case Adventurer.NO_SUCH_ITEM_IN_ROOM:
                                 IOoperations.writeString("A la sala no hi ha aquest item.\n");
@@ -119,7 +121,7 @@ public class UserInterface {
                             default:
                                 break;
                         }
-                    } //Deixar
+                    } // Deixar
                     else if (simpleMatch(UserInterface.ORDER_DROP, command)) {
 
                         int res = this.controller.drop(arguments[1]);
@@ -134,24 +136,27 @@ public class UserInterface {
                     }
                     break;
                 case 3:
-                    // Utilitzar 
+                    // Utilitzar
                     if (simpleMatch(UserInterface.ORDER_USE, command)) {
                         int res = this.controller.useItemOnElement(arguments[1], arguments[2]);
                         switch (res) {
                             case SecretElement.OK_ACTION:
-                                IOoperations.writeString("Has utilitzat " + arguments[1] + " per activar " + arguments[2] + ", amb exit.\n");
+                                IOoperations.writeString("Has utilitzat " + arguments[1] + " per activar "
+                                        + arguments[2] + ", amb exit.\n");
                                 break;
                             case Adventurer.NO_SUCH_ITEM_IN_INVENTORY:
                                 IOoperations.writeString("No tens cap item amb aquest nom " + arguments[1] + ".\n");
                                 break;
                             case Adventurer.NO_SUCH_ELEMENT_IN_ROOM:
-                                IOoperations.writeString("A la sala no hi ha cap element anomenat " + arguments[2] + ".\n");
+                                IOoperations
+                                        .writeString("A la sala no hi ha cap element anomenat " + arguments[2] + ".\n");
                                 break;
                             case SecretElement.ELEMENT_USED:
                                 IOoperations.writeString("Ja has utilitzat aquest element " + arguments[2] + ".\n");
                                 break;
                             case SecretElement.WRONG_KEY:
-                                IOoperations.writeString("L'item " + arguments[1] + " no és la clau que destapa l'element " + arguments[2] + ".\n");
+                                IOoperations.writeString("L'item " + arguments[1]
+                                        + " no és la clau que destapa l'element " + arguments[2] + ".\n");
                                 break;
                             default:
                                 break;
