@@ -7,25 +7,21 @@ import java.util.Iterator;
 /** Atributs i mètodes d'una sala del laberint. */
 public class Room {
 
-    private final String description;
-    private Map<String, Room> exits;
-    private Map<String, Item> items;
     private final String name;
+    private final String description;
+    private final Map<String, Item> items;
+    private final Map<String, Room> exits;
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        exits = new HashMap<>();
         items = new HashMap<>();
+        exits = new HashMap<>();
     }
 
     // Connecta unidireccionalment aquesta sala amb una altra.
     public void connect(Room destination, String exitName) {
-        try {
-            exits.put(exitName, destination);
-        } catch (Exception e) {
-            throw new LaberintException("");
-        }
+        exits.put(exitName, destination);
     }
 
     public String getName() {
