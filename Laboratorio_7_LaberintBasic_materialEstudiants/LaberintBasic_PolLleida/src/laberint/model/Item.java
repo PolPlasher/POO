@@ -14,15 +14,15 @@ public class Item {
     }
 
     public int getEncumbrance() {
-        return this.encumbrance;
+        return encumbrance;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setEncumbrance(int enc) {
-        this.encumbrance = enc;
+        encumbrance = enc;
     }
 
     public setValue(int value) {

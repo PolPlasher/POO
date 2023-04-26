@@ -9,7 +9,7 @@ public class Adventurer {
 
     private Room currentLocation;
     private int encumbrance;
-    private Treemap<String, Item> inventory;
+    private TreeMap<String, Item> inventory;
     /** Càrrega màxima que pot suportar l'aventurer. */
     private static final int MAX_ENCUMBRANCE = 15;
     private final String name;
@@ -21,8 +21,11 @@ public class Adventurer {
 
     // Fa que l'aventurer deixi caure un item (l'item s'extreu de l'inventari i
     // s'afegeix a la sala actual).
-    public void drop(String itemName) {
-
+    public void drop(String itemName) throws LaberintException {
+        if (!inventory.containsKey(itemName))
+            throw new LaberintException("No disposes de cap item amb aquest nom.");
+        encumbrance -= inventory.get(itemName).getEncumbrance();
+        inventory.remove(itemName);
     }
 
     public Room getCurrentLocation() {
@@ -54,14 +57,17 @@ public class Adventurer {
     }
 
     public void move(String exitName) throws LaberintException {
-        //  WIP
-        if (currentLocation.nextRoom(exitName)) {
+        if (currentLocation.nextRoom(exitName) == null)
             throw new LaberintException("No such exit");
-        }
         currentLocation = currentlocation.exits.get(exitName);
     }
 
-    public void pickUp(String itemName) {
-
+    public void pickUp(String itemName) throws LaberintException {
+        Item item = currentLocation.retrieveItem(itemName);
+        if (encumbrance + currentLocation.retrieveItem(itemName).getEncumbrance() > MAX_ENCUMBRANCE) {
+            currentLocation.putItem(item);
+            throw new LaberintException("Inventory is full");
+        }
+        inventory.put(itemName, item);
     }
 }

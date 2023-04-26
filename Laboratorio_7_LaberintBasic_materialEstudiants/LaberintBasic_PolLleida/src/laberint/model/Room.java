@@ -19,28 +19,30 @@ public class Room {
 
     // Connecta unidireccionalment aquesta sala amb una altra.
     public void connect(Room destination, String exitName) {
-        try{
-        exits.put(exitName, destination);
+        try {
+            exits.put(exitName, destination);
         } catch (Exception e) {
             throw new LaberintException("");
         }
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     // Retorna la sala a la qual s'accedeix per una sortida donada.
     public Room nextRoom(String exitName) {
-        return 0;
+        return exits.get(exitName);
     }
 
     public void putItem(Item item) {
-
+        items.put(item.getName(), item);
     }
 
     public Item retrieveItem(String itemName) {
-        return 0;
+        Item item = items.get(itemName);
+        items.remove(itemName);
+        return item;
     }
 
     /**
