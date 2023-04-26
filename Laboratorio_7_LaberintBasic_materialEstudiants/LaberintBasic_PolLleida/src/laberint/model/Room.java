@@ -15,6 +15,8 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
+        exits = new HashMap<>();
+        items = new HashMap<>();
     }
 
     // Connecta unidireccionalment aquesta sala amb una altra.

@@ -17,6 +17,7 @@ public class Adventurer {
     public Adventurer(String name, Room startLocation) {
         this.name = name;
         this.currentLocation = startLocation;
+        inventory = new TreeMap<>();
     }
 
     // Fa que l'aventurer deixi caure un item (l'item s'extreu de l'inventari i

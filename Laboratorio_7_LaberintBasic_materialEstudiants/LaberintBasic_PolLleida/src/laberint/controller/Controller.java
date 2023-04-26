@@ -6,6 +6,7 @@ import laberint.model.Adventurer;
 import laberint.model.Item;
 import laberint.model.Room;
 import laberint.userinterface.IOoperations;
+import laberint.model.Item;
 
 /**
  * Controlador: gestiona l'execució de cada una de les comandes que composen
