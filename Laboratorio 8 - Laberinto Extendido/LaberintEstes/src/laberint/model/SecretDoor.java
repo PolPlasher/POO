@@ -9,6 +9,7 @@ public class SecretDoor extends SecretElement {
         this.hiddenRoom = hiddenR;
     }
 
+    @Override
     public int use(Item key) {
         if (!used) {
             if (key == keyModel) {

@@ -7,6 +7,7 @@ public class SecretContainer extends SecretElement {
         here.putItem(hidden);
     }
 
+    @Override
     public int use(Item key) {
         if (!used) {
             if (key == keyModel) {

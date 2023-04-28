@@ -40,4 +40,13 @@ public class Item {
     public String toString() {
         return "[" + this.name + ", valor " + this.value + ", car " + this.encumbrance + "] " + this.description;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        Item item = (Item) object;
+        if (item == this)
+            return true;
+        else
+            return false;
+    }
 }
