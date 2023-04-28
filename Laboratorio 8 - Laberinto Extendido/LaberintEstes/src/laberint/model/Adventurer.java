@@ -14,13 +14,13 @@ public class Adventurer {
     private final TreeMap<String, Item> inventory;
     private int encumbrance;
 
-    //  Estès
-    public static final int OK_ACTION = 1;
-    public static final int NO_SUCH_EXIT = 2;
-    public static final int INVENTORY_IS_FULL = 3;
-    public static final int NO_SUCH_ITEM_IN_INVENTORY = 4;
-    public static final int NO_SUCH_ITEM_IN_ROOM = 5;
-    public static final int NO_SUCH_ELEMENT_IN_ROOM = 6;
+    // Estès
+    public static final int OK_ACTION = 0;
+    public static final int NO_SUCH_EXIT = 1;
+    public static final int INVENTORY_IS_FULL = 2;
+    public static final int NO_SUCH_ITEM_IN_INVENTORY = 3;
+    public static final int NO_SUCH_ITEM_IN_ROOM = 4;
+    public static final int NO_SUCH_ELEMENT_IN_ROOM = 5;
 
     public Adventurer(String name, Room startLocation) {
         this.name = name;

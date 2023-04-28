@@ -11,6 +11,7 @@ public class Room {
     private final String description;
     private final Map<String, Item> items;
     private final Map<String, Room> exits;
+    public static final boolean SHOW_SECRET_ELEMENTS = false;
 
     public Room(String name, String description) {
         this.name = name;
