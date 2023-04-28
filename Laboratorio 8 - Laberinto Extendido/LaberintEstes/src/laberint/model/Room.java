@@ -34,6 +34,14 @@ public class Room {
         return exits.get(exitName);
     }
 
+    public SecretElement getElement(String elementName) {
+        return 
+    }
+
+    public void putElement(SecretElement el) {
+        
+    }
+
     public void putItem(Item item) {
         items.put(item.getName(), item);
     }
