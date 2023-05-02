@@ -82,4 +82,12 @@ public class Adventurer {
         }
         inventory.put(itemName, item);
     }
+
+    public int useItemOnElement(String itemName, String elementName) {
+        //  1.5)
+        if (inventory.get(elementName) == null) {
+            return NO_SUCH_ITEM_IN_INVENTORY;
+        }
+        if ()
+    }
 }

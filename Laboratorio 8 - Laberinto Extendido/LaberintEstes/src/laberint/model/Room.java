@@ -9,8 +9,9 @@ public class Room {
 
     private final String name;
     private final String description;
-    private final Map<String, Item> items;
-    private final Map<String, Room> exits;
+    private Map<String, Item> items;
+    private Map<String, Room> exits;
+    private Map<String, SecretElement> secretElements;
     public static final boolean SHOW_SECRET_ELEMENTS = false;
 
     public Room(String name, String description) {
@@ -35,11 +36,11 @@ public class Room {
     }
 
     public SecretElement getElement(String elementName) {
-        return 
+        return secretElements.get(elementName);
     }
 
     public void putElement(SecretElement el) {
-        
+        secretElements.put(el.name, el);
     }
 
     public void putItem(Item item) {

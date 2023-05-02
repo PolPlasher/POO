@@ -444,23 +444,36 @@ public class Posicion {
      *                           posición de algún barco.
      *                           posición de algún barco.
      */
-    public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero) throws PositionException {
-        String posicionActual = posicion;
-        String[] adyacentes = new String[4];
-        int deltaFila = 0, deltaCol = 0;
-        if (direccion.equals(HORIZONTAL)) {
-            deltaCol = 1;
-        } else if (direccion.equals(VERTICAL)) {
-            deltaFila = 1;
+    public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero)
+            throws PositionException {
+        int H = 0, V = 0;
+        if (direccion == HORIZONTAL)
+            H = 1;
+        if (direccion == VERTICAL)
+            V = 1;
+        for (int i = 0; i < lon; i++) {
+            if (tablero.getBarcoEn(Posicion.avanzaCasillas(posicion, V * i, H * i)) != null)
+                throw new PositionException();
         }
-        if (tablero.getPosicionesBarcos().contains(posicionActual)) {
-            throw new PositionException(posicionActual);
-        }
-        adyacentes = Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
-        for (int j = 0; j < 4; j++) {
-            if (tablero.getPosicionesBarcos().contains(adyacentes[j])) {
-                throw new PositionException(posicionActual);
-            }
-        }
+
+        /*
+         * String posicionActual = posicion;
+         * String[] adyacentes = new String[4];
+         * int deltaFila = 0, deltaCol = 0;
+         * if (direccion.equals(HORIZONTAL)) {
+         * deltaCol = 1;
+         * } else if (direccion.equals(VERTICAL)) {
+         * deltaFila = 1;
+         * }
+         * if (tablero.getPosicionesBarcos().contains(posicionActual)) {
+         * throw new PositionException(posicionActual);
+         * }
+         * adyacentes = Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
+         * for (int j = 0; j < 4; j++) {
+         * if (tablero.getPosicionesBarcos().contains(adyacentes[j])) {
+         * throw new PositionException(posicionActual);
+         * }
+         * }
+         */
     }
 }
