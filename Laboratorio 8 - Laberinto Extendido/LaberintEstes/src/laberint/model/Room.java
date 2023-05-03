@@ -12,13 +12,14 @@ public class Room {
     private Map<String, Item> items;
     private Map<String, Room> exits;
     private Map<String, SecretElement> secretElements;
-    public static final boolean SHOW_SECRET_ELEMENTS = false;
+    public static final boolean SHOW_SECRET_ELEMENTS = true;
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         items = new HashMap<>();
         exits = new HashMap<>();
+        secretElements = new HashMap<>();
     }
 
     // Connecta unidireccionalment aquesta sala amb una altra.

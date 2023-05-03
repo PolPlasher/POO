@@ -2,7 +2,6 @@ package laberint.model;
 
 import java.util.TreeMap;
 import java.util.Iterator;
-import laberint.excepcions.LaberintException;
 
 /** Atributs i mètodes de l'Aventurer. */
 public class Adventurer {
@@ -29,13 +28,32 @@ public class Adventurer {
         encumbrance = 0;
     }
 
-    // Fa que l'aventurer deixi caure un item (l'item s'extreu de l'inventari i
-    // s'afegeix a la sala actual).
-    public void drop(String itemName) throws LaberintException {
+    public int move(String exitName) {
+        if (currentLocation.nextRoom(exitName) == null)
+            return NO_SUCH_EXIT;
+        currentLocation = currentLocation.nextRoom(exitName);
+        return OK_ACTION;
+    }
+
+    public int pickUp(String itemName) {
+        Item item = currentLocation.retrieveItem(itemName);
+        if (item == null)
+            return NO_SUCH_ITEM_IN_ROOM;
+        if (encumbrance + item.getEncumbrance() > MAX_ENCUMBRANCE) {
+            currentLocation.putItem(item);
+            return INVENTORY_IS_FULL;
+        }
+        inventory.put(itemName, item);
+        return OK_ACTION;
+    }
+
+    public int drop(String itemName) {
         if (!inventory.containsKey(itemName))
-            throw new LaberintException("No disposes de cap item amb aquest nom.");
+            return NO_SUCH_ITEM_IN_INVENTORY;
         encumbrance -= inventory.get(itemName).getEncumbrance();
+        currentLocation.putItem(inventory.get(itemName));
         inventory.remove(itemName);
+        return OK_ACTION;
     }
 
     public Room getCurrentLocation() {
@@ -64,23 +82,6 @@ public class Adventurer {
             }
         }
         return text;
-    }
-
-    public void move(String exitName) throws LaberintException {
-        if (currentLocation.nextRoom(exitName) == null)
-            throw new LaberintException("No such exit");
-        currentLocation = currentLocation.nextRoom(exitName);
-    }
-
-    public void pickUp(String itemName) throws LaberintException {
-        Item item = currentLocation.retrieveItem(itemName);
-        if (item == null)
-            throw new LaberintException("No such item");
-        if (encumbrance + item.getEncumbrance() > MAX_ENCUMBRANCE) {
-            currentLocation.putItem(item);
-            throw new LaberintException("Inventory is full");
-        }
-        inventory.put(itemName, item);
     }
 
     public int useItemOnElement(String itemName, String elementName) {
