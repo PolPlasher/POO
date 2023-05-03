@@ -5,7 +5,7 @@ public class SecretElement {
     public static final int OK_ACTION = 0;
     public static int ELEMENT_USED = 1;
     public static final int WRONG_KEY = 2;
-    
+
     protected String name;
     protected boolean used;
     protected Item keyModel;

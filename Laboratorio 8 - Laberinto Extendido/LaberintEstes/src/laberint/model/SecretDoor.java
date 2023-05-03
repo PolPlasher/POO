@@ -1,7 +1,7 @@
 package laberint.model;
 
 public class SecretDoor extends SecretElement {
-    
+
     Room hiddenRoom;
 
     public SecretDoor(String name, Item keyModel, Room here, Room hiddenR) {

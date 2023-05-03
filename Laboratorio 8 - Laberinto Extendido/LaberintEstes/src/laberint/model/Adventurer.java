@@ -84,10 +84,10 @@ public class Adventurer {
     }
 
     public int useItemOnElement(String itemName, String elementName) {
-        //  1.5)
-        if (inventory.get(elementName) == null) {
+        if (inventory.get(elementName) == null)
             return NO_SUCH_ITEM_IN_INVENTORY;
-        }
-        if ()
+        if (currentLocation.getElement(elementName) == null)
+            return NO_SUCH_ELEMENT_IN_ROOM;
+        return currentLocation.getElement(elementName).use(inventory.get(elementName));
     }
 }
