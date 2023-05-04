@@ -116,6 +116,7 @@ public class Tablero {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
+                
         /*
          * METODO NO NECESARIO PARA LA PRIMERA ENTREGA
          * if (!Posicion.esCorrecta(posicion)) {

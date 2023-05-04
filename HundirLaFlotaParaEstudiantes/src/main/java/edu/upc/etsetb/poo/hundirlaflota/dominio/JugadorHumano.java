@@ -4,6 +4,7 @@
  */
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,7 +30,7 @@ public class JugadorHumano extends Jugador {
      */
     public JugadorHumano(String nombre) {
         super(nombre);
-        throw new UnsupportedOperationException("JugadorHumano::JugadorHumano. Todavía NO has implementado este método");
+        visorDeAtaque = new HashMap<>();
     }
 
     /**
