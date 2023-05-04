@@ -446,13 +446,13 @@ public class Posicion {
      */
     public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero)
             throws PositionException {
-        int H = 0, V = 0;
+        int horizontal = 0, vertical = 0;
         if (direccion == HORIZONTAL)
-            H = 1;
+            horizontal = 1;
         if (direccion == VERTICAL)
-            V = 1;
+            vertical = 1;
         for (int i = 0; i < lon; i++) {
-            if (tablero.getBarcoEn(Posicion.avanzaCasillas(posicion, V * i, H * i)) != null)
+            if (tablero.getBarcoEn(avanzaCasillas(posicion, vertical * i, horizontal * i)) != null)
                 throw new PositionException();
         }
 
