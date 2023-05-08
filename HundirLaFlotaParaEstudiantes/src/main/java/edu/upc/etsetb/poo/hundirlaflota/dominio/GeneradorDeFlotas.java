@@ -18,31 +18,28 @@ public class GeneradorDeFlotas {
     /**
      * Array invariable con los distintivos de los diferentes tipos de barco
      */
-    private static final String[] ARRAY_TIPOS_BARCOS = {"P", "B", "S", "C", "L"};
+    private static final String[] ARRAY_TIPOS_BARCOS = { "P", "B", "S", "C", "L" };
 
     /**
      * Array invariable con los distintivos de las dos direcciones: horizontal
      * ("H") y vertical ("V")
      */
-    private static final String[] ARRAY_DIRECCIONES = {"H", "V"};
+    private static final String[] ARRAY_DIRECCIONES = { "H", "V" };
 
     /**
      * Lista con los distintivos de los diferentes tipos de barcos
      */
-    private static final List<String> TIPOS_BARCOS
-            = Arrays.asList(GeneradorDeFlotas.ARRAY_TIPOS_BARCOS);
+    private static final List<String> TIPOS_BARCOS = Arrays.asList(GeneradorDeFlotas.ARRAY_TIPOS_BARCOS);
 
     /**
      * Lista con los distintivos de las dos direcciones
      */
-    private static final List<String> DIRECCIONES
-            = Arrays.asList(GeneradorDeFlotas.ARRAY_DIRECCIONES);
+    private static final List<String> DIRECCIONES = Arrays.asList(GeneradorDeFlotas.ARRAY_DIRECCIONES);
 
     /**
      * Constructor sin argumentos: no hace nada
      */
     public GeneradorDeFlotas() {
-        throw new UnsupportedOperationException("GeneradorDeFlotas::GeneradorDeFlotas. Todavía NO has implementado este método");
     }
 
     /**
@@ -64,11 +61,13 @@ public class GeneradorDeFlotas {
      * @param jugador el jugador para el que se crea la flota
      *
      * @throws PositionException si alguna posición en la que pretende dejarse
-     * algún barco es incorrecta (no debería lanzarse si todos los métodos están
-     * bien diseñados e implementador)
+     *                           algún barco es incorrecta (no debería lanzarse si
+     *                           todos los métodos están
+     *                           bien diseñados e implementador)
      */
     public void generaFlotaDeterminista(Jugador jugador) throws PositionException {
-        throw new UnsupportedOperationException("GeneradorDeFlotas::generaFlotaDeterminista. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "GeneradorDeFlotas::generaFlotaDeterminista. Todavía NO has implementado este método");
     }
 
     /**
@@ -91,18 +90,19 @@ public class GeneradorDeFlotas {
      * obtenidas (método Jugador::ponBarco ).</li>
      * </ol>
      *
-     * @param jugador el jugador para el que se creará y pondrá el barco
+     * @param jugador     el jugador para el que se creará y pondrá el barco
      *
-     * @param tipoBarco el tipo del barco a crear ("L": lancha, "C": crucero,
-     * "S": submarino, "B": buque, "P": portaviones)
+     * @param tipoBarco   el tipo del barco a crear ("L": lancha, "C": crucero,
+     *                    "S": submarino, "B": buque, "P": portaviones)
      *
      * @param nombreBarco el nombre del barco
      *
-     * @param random objeto Random para obtener enteros aleatoriamente
+     * @param random      objeto Random para obtener enteros aleatoriamente
      */
     public void generaYPonBarco(Jugador jugador, String tipoBarco,
             String nombreBarco, Random random) {
-        throw new UnsupportedOperationException("GeneradorDeFlotas::generaYPonBarco. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "GeneradorDeFlotas::generaYPonBarco. Todavía NO has implementado este método");
     }
 
     /**
@@ -112,12 +112,13 @@ public class GeneradorDeFlotas {
      * @param jugador el jugador para el que se generará la flota aleatoria
      */
     public void generaFlotaAleatoria(Jugador jugador) {
-        //Dejad la siguiente línea: crea un objeto Random con una semilla
-        //diferente para instantes que están separados más de 1 milisegundo
+        // Dejad la siguiente línea: crea un objeto Random con una semilla
+        // diferente para instantes que están separados más de 1 milisegundo
         Random random = new Random(System.currentTimeMillis());
-        //Aquí debajo, eliminad la sentencia que crea y lanza la excepción
-        //y sustituidla por vuestro código
-        throw new UnsupportedOperationException("GeneradorDeFlotas::generaFlotaAleatoria. Todavía NO has implementado este método");
+        // Aquí debajo, eliminad la sentencia que crea y lanza la excepción
+        // y sustituidla por vuestro código
+        throw new UnsupportedOperationException(
+                "GeneradorDeFlotas::generaFlotaAleatoria. Todavía NO has implementado este método");
     }
 
     /**
@@ -128,43 +129,53 @@ public class GeneradorDeFlotas {
      * Este método toma el argumento línea, la trocea en sus partes, comprueba
      * si su sintaxis es correcta y si es así crea un nuevo barco según las
      * indicaciones de esa línea. La línea debe responder al siguiente patrón:
-     * <br>&lt;TIPO_BARCO&gt; &lt;POSICION&gt; &lt;DISPOSICION DEL BARCO&gt; 
+     * <br>
+     * &lt;TIPO_BARCO&gt; &lt;POSICION&gt; &lt;DISPOSICION DEL BARCO&gt;
      * &lt;NOMBRE DEL BARCO&gt;<br>
      * Donde:
      * <ul>
-     * <li>&lt;TIPO_BARCO&gt; será una letra indicando el tipo de barco ("L": lancha,
+     * <li>&lt;TIPO_BARCO&gt; será una letra indicando el tipo de barco ("L":
+     * lancha,
      * "C": crucero, "S": submarino, "B": buque, "P": portaviones).</li>
      * <li>&lt;POSICION&gt; será la posición de la casilla a partir de la cual
      * comenzará a depositarse el barco (A6, por ejemplo).</li>
-     * <li>&lt;DISPOSICION DEL BARCO&gt; será un caracter que indicará si el barco se
+     * <li>&lt;DISPOSICION DEL BARCO&gt; será un caracter que indicará si el barco
+     * se
      * dispondrá horizontal (H) o verticalmente (V).</li>
      * <li>&lt;NOMBRE DEL BARCO&gt; será un string con el nombre del barco.</li>
      * </ul>
      * Ejemplo. La línea:
-     * <br>L A6 V Lancha_1
-     * <br>NOTA: Los 4 componentes están separados por un caracter blanco.
-     * <br>Ordenaría la creación de una LANCHA (L) conel nombre Lancha_1, y su
+     * <br>
+     * L A6 V Lancha_1
+     * <br>
+     * NOTA: Los 4 componentes están separados por un caracter blanco.
+     * <br>
+     * Ordenaría la creación de una LANCHA (L) conel nombre Lancha_1, y su
      * colocación en VERTICAL a partir de la casilla de posición A6.
      *
      * @param jugador el jugador para el que se genera el barco
-     * @param linea la línea con los datos
-     * @param nLinea el número de orden que la línea ocupa en el fichero
+     * @param linea   la línea con los datos
+     * @param nLinea  el número de orden que la línea ocupa en el fichero
      * 
      * @throws ArchivoFlotaException si la línea cumple alguna de las siguientes
-     * condiciones:
-     * <ol>
-     * <li>La línea no puede trocearse en 4 partes.</li>
-     * <li>El primer caracter no blanco de la línea NO se corresponde con ningún
-     * indicativo de tipo de barco.</li>
-     * <li>El valor de &lt;DISPOSICION DEL BARCO&gt; no es ni 'H' ni 'V'.</li>
-     * </ol>
+     *                               condiciones:
+     *                               <ol>
+     *                               <li>La línea no puede trocearse en 4
+     *                               partes.</li>
+     *                               <li>El primer caracter no blanco de la línea NO
+     *                               se corresponde con ningún
+     *                               indicativo de tipo de barco.</li>
+     *                               <li>El valor de &lt;DISPOSICION DEL BARCO&gt;
+     *                               no es ni 'H' ni 'V'.</li>
+     *                               </ol>
      * 
-     * @throws PositionException si el barco debiera ocupar alguna posición 
-     * incorrecta
+     * @throws PositionException     si el barco debiera ocupar alguna posición
+     *                               incorrecta
      */
     public void generaBarcoDeLinea(Jugador jugador, String linea, int nLinea)
             throws ArchivoFlotaException, PositionException {
-        throw new UnsupportedOperationException("GeneradorDeFlotas::generaBarcoDeLinea. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "GeneradorDeFlotas::generaBarcoDeLinea. Todavía NO has implementado este método");
     }
 
     /**
@@ -176,21 +187,24 @@ public class GeneradorDeFlotas {
      * contenido de esa línea. Cuando ha acabado de leer todas las líneas y de
      * invocar con todas ellas al método anterior, el método cierra el archivo.
      *
-     * @param jugador el jugador para el que se creará la flota
+     * @param jugador     el jugador para el que se creará la flota
      *
      * @param pathFichero el nombre completo (pathname) del archivo de texto a
-     * leer.
+     *                    leer.
      *
-     * @throws IOException si hay una operación de apertura o lectura de archivo
-     * incorrecta.
+     * @throws IOException           si hay una operación de apertura o lectura de
+     *                               archivo
+     *                               incorrecta.
      *
-     * @throws ArchivoFlotaException si el archivo contiene algún error (ver 
-     * la especificación del método generaBarcoDeLinea)
+     * @throws ArchivoFlotaException si el archivo contiene algún error (ver
+     *                               la especificación del método
+     *                               generaBarcoDeLinea)
      *
-     * @throws PositionException si alguna posición de algún barco es incorrecta
+     * @throws PositionException     si alguna posición de algún barco es incorrecta
      */
     public void leeFlotaDeArchivo(Jugador jugador, String pathFichero)
             throws IOException, ArchivoFlotaException, PositionException {
-        throw new UnsupportedOperationException("GeneradorDeFlotas::leeFlotaDeArchivo. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "GeneradorDeFlotas::leeFlotaDeArchivo. Todavía NO has implementado este método");
     }
 }

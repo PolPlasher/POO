@@ -46,14 +46,19 @@ public abstract class Jugador {
     /**
      * Inicializa el jugador.
      *
-     * <br>Inicializa el atributo numBarcosHundidos a 0.
-     * <br>Crea un tablero.
-     * <br>Inicializa el atributo nombre al argumento nombre.
+     * <br>
+     * Inicializa el atributo numBarcosHundidos a 0.
+     * <br>
+     * Crea un tablero.
+     * <br>
+     * Inicializa el atributo nombre al argumento nombre.
      *
      * @param nombre el nombre del barco.
      */
     public Jugador(String nombre) {
-        throw new UnsupportedOperationException("Jugador::Jugador. Todavía NO has implementado este método");
+        numBarcosHundidos = 0;
+        tablero = new Tablero();
+        this.nombre = nombre;
     }
 
     /**
@@ -62,7 +67,7 @@ public abstract class Jugador {
      * @return the value of tablero
      */
     public Tablero getTablero() {
-        throw new UnsupportedOperationException("Jugador::getTablero. Todavía NO has implementado este método");
+        return tablero;
     }
 
     /**
@@ -70,13 +75,13 @@ public abstract class Jugador {
      * jugador, el barco pasado como argumento, en la posición pasada como
      * argumento, y en la dirección pasada como argumento.
      *
-     * @param barco el barco a depositar en el tablero.
-     * @param posicion la primera posición que ocupará el barco en el tablero.
+     * @param barco     el barco a depositar en el tablero.
+     * @param posicion  la primera posición que ocupará el barco en el tablero.
      * @param direccion la dirección en la que se dispondrá el barco en el
-     * tablero.
+     *                  tablero.
      *
      * @throws PositionException si alguna de las posiciones no es correcta o si
-     * alguna de las posiciones contacta con algún barco.
+     *                           alguna de las posiciones contacta con algún barco.
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
@@ -89,15 +94,20 @@ public abstract class Jugador {
      * Barco::hundiraEsteTocado.
      *
      * @param posicion la posición del tablero a la que el adversario ha
-     * disparado.
+     *                 disparado.
      *
      * @return Jugador.AGUA si el disparo ha dado en el agua; Jugador.TOCADO si
-     * el disparo ha tocado a alguno de los barcos del jugador pero no lo ha
-     * hundido; Jugador.HUNDIDO si el disparo ha hundido a alguno de los barcos
-     * del jugador.
+     *         el disparo ha tocado a alguno de los barcos del jugador pero no lo ha
+     *         hundido; Jugador.HUNDIDO si el disparo ha hundido a alguno de los
+     *         barcos
+     *         del jugador.
      */
     public String dondeHanDado(String posicion) {
-        throw new UnsupportedOperationException("Jugador::dondeHanDado. Todavía NO has implementado este método");
+        if (tablero.getContenidoCasilla(posicion) == null)
+            return AGUA;
+        if (tablero.getBarcoEn(posicion).hundiraEsteTocado(posicion))
+            return HUNDIDO;
+        return TOCADO;
     }
 
     /**
@@ -107,15 +117,17 @@ public abstract class Jugador {
      * atributo numBarcosHundidos y devuelve null; en las subclases se
      * especificará un retorno distinto.
      *
-     * @param posDisparo la posición a la que el adversario le ha disparado (y
-     * hundido algún barco) al jugador
+     * @param posDisparo     la posición a la que el adversario le ha disparado (y
+     *                       hundido algún barco) al jugador
      *
      * @param numTotalBarcos númmero total de barcos del jugador
      *
      * @return null
      */
     public String procesaHundido(String posDisparo, int numTotalBarcos) {
-        throw new UnsupportedOperationException("Jugador::procesaHundido. Todavía NO has implementado este método");
+        //  Uncomplete
+        numBarcosHundidos--;
+        return null;
     }
 
     /**
@@ -128,7 +140,8 @@ public abstract class Jugador {
      * @return false siempre en la clase Jugador.
      */
     public boolean hasDisparadoAquiAntes(String posDisparo) {
-        throw new UnsupportedOperationException("Jugador::hasDisparadoAquiAntes. Todavía NO has implementado este método");
+        // Uncomplete
+        return false;
     }
 
     /**
@@ -137,7 +150,7 @@ public abstract class Jugador {
      * @return the value of nombre
      */
     public String getNombre() {
-        throw new UnsupportedOperationException("Jugador::getNombre. Todavía NO has implementado este método");
+        return nombre;
     }
 
     /**
@@ -146,7 +159,8 @@ public abstract class Jugador {
      * @return the value of numBarcosHundidos
      */
     public int getNumBarcosHundidos() {
-        throw new UnsupportedOperationException("Jugador::getNumBarcosHundidos. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "Jugador::getNumBarcosHundidos. Todavía NO has implementado este método");
     }
 
     /**
@@ -161,7 +175,7 @@ public abstract class Jugador {
      * Método abstracto que las subclases deberán implementar.
      *
      * @return true si el jugador es humano, false si el jugador es un jugador
-     * máquina
+     *         máquina
      */
     public abstract boolean eresHumano();
 
@@ -171,10 +185,10 @@ public abstract class Jugador {
      * del adversario sin haberlo hundido
      *
      * @param posDisparo la posición a la que el adversario le ha disparado (y
-     * hundido algún barco) al jugador
+     *                   hundido algún barco) al jugador
      *
      * @return la posición a la que el jugador dispara al finalizar el procesado
-     * de tocado
+     *         de tocado
      *
      * @throws PositionException si la posición no es correcta
      */
@@ -186,7 +200,7 @@ public abstract class Jugador {
      * un disparo, para anotarlo en su visor de ataque.
      *
      * @param posDisparo la posición a la que el jugador ha disparado
-     * @param resultado el resultado del disparo
+     * @param resultado  el resultado del disparo
      */
     public abstract void anotaDisparoPropio(String posDisparo, String resultado);
 
@@ -197,7 +211,7 @@ public abstract class Jugador {
      * jugador atacado.
      *
      * @param posDisparo la posición a la que el adversario ha disparado
-     * @param resultado el resultado del disparo
+     * @param resultado  el resultado del disparo
      */
     public abstract void anotaDisparoAjeno(String posDisparo, String resultado);
 
