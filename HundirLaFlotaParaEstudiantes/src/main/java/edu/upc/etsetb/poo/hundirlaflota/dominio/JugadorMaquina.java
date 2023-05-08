@@ -4,6 +4,7 @@
  */
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -66,8 +67,14 @@ public class JugadorMaquina extends Jugador {
      * JugadorMaquina::numInstances.
      */
     public JugadorMaquina() {
-        super("");
-        throw new UnsupportedOperationException("JugadorMaquina::JugadorMaquina. Todavía NO has implementado este método");
+        super("JugadorMaquina-" + Integer.toString(numInstances+1));
+        numInstances++;
+        for (String casilla : Posicion.todasLasCasillas())
+            noDisparadas.add(casilla);
+        tocadas = new ArrayList<>();
+        proximosDisparos = new ArrayList<>();
+        dirBarcoTocado = null;
+        myRandom = new Random(numInstances);
     }
 
     /**
@@ -97,7 +104,7 @@ public class JugadorMaquina extends Jugador {
      */
     @Override
     public boolean eresHumano() {
-        throw new UnsupportedOperationException("JugadorMaquina::eresHumano. Todavía NO has implementado este método");
+        return false;
     }
 
     /**

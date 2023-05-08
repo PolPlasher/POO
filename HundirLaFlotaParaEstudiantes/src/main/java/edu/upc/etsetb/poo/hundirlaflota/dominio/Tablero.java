@@ -6,7 +6,6 @@ package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -116,17 +115,23 @@ public class Tablero {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
-                
-        /*
-         * METODO NO NECESARIO PARA LA PRIMERA ENTREGA
-         * if (!Posicion.esCorrecta(posicion)) {
-         * throw new PositionException(posicion);
-         * }
-         * Posicion.checkPosicionesCorrectas(new String[] { posicion, direccion },
-         * barco.getLon());
-         * 
-         */
-
+        Posicion.checkNoContactaConOtro(posicion, barco.getLon(), direccion, this);
+        ArrayList<String> posiciones= new ArrayList<>();
+        String posicionActual;
+        if (posicion.equals("H")){
+            for (int i = 0; i < barco.getLon(); i++){
+                posicionActual = Posicion.avanzaCasillas(posicion, 0, i);
+                posiciones.add(posicionActual);
+                casillas.put(posicionActual, barco);
+            }
+        } else if (posicion.equals("V")){
+            for (int i = 0; i < barco.getLon(); i++){
+                posicionActual = Posicion.avanzaCasillas(posicion, i, 0);
+                posiciones.add(posicionActual);
+                casillas.put(posicionActual, barco);
+            }
+        }
+        barco.setPosiciones(posiciones);
     }
 
     /**
