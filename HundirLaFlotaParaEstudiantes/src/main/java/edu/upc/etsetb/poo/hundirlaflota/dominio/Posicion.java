@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Iterator;
 
 import javax.swing.text.Position;
+
 
 /**
  *
@@ -455,26 +457,8 @@ public class Posicion {
         for (int i = 0; i < lon; i++) {
             if (tablero.getBarcoEn(avanzaCasillas(posicion, vertical * i, horizontal * i)) != null)
                 throw new PositionException();
+            Set<String> adyacentes = getAdyacentes(avanzaCasillas(posicion, vertical * i, horizontal * i));
+            Iterator<String> iterator = adyacentes.iterator();
         }
-
-        /*
-         * String posicionActual = posicion;
-         * String[] adyacentes = new String[4];
-         * int deltaFila = 0, deltaCol = 0;
-         * if (direccion.equals(HORIZONTAL)) {
-         * deltaCol = 1;
-         * } else if (direccion.equals(VERTICAL)) {
-         * deltaFila = 1;
-         * }
-         * if (tablero.getPosicionesBarcos().contains(posicionActual)) {
-         * throw new PositionException(posicionActual);
-         * }
-         * adyacentes = Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
-         * for (int j = 0; j < 4; j++) {
-         * if (tablero.getPosicionesBarcos().contains(adyacentes[j])) {
-         * throw new PositionException(posicionActual);
-         * }
-         * }
-         */
     }
 }
