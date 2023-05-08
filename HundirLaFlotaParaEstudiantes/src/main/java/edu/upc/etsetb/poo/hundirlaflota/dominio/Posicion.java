@@ -447,6 +447,7 @@ public class Posicion {
     public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero)
             throws PositionException {
         int horizontal = 0, vertical = 0;
+        checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
         if (direccion == HORIZONTAL)
             horizontal = 1;
         if (direccion == VERTICAL)
