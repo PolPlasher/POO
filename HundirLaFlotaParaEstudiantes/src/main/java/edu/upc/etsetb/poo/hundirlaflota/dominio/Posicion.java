@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Iterator;
 
-import javax.swing.text.Position;
 
 /**
  *
@@ -380,7 +380,11 @@ public class Posicion {
     public static Set<String> getAdyacentes(String posicion)
             throws PositionException {
         Set<String> lista = new HashSet<>();
+<<<<<<< HEAD
         if (!esCorrecta(posicion))
+=======
+        if (!Posicion.esCorrecta(posicion))
+>>>>>>> c67758779775ec4954f24288b98cab3c09bee1db
             throw new PositionException();
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -444,11 +448,13 @@ public class Posicion {
     public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero)
             throws PositionException {
         int horizontal = 0, vertical = 0;
+        checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
         if (direccion == HORIZONTAL)
             horizontal = 1;
         if (direccion == VERTICAL)
             vertical = 1;
         for (int i = 0; i < lon; i++) {
+<<<<<<< HEAD
             Iterator<String> iterator = getAdyacentes(avanzaCasillas(posicion, vertical * i, horizontal * i))
                     .iterator();
             while (iterator.hasNext()) {
@@ -456,6 +462,12 @@ public class Posicion {
                 if (barco != null)
                     throw new PositionException();
             }
+=======
+            if (tablero.getBarcoEn(avanzaCasillas(posicion, vertical * i, horizontal * i)) != null)
+                throw new PositionException();
+            Set<String> adyacentes = getAdyacentes(avanzaCasillas(posicion, vertical * i, horizontal * i));
+            Iterator<String> iterator = adyacentes.iterator();
+>>>>>>> c67758779775ec4954f24288b98cab3c09bee1db
         }
     }
 }

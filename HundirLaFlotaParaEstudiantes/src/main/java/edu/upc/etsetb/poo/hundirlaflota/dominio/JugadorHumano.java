@@ -125,7 +125,11 @@ public class JugadorHumano extends Jugador {
     * @return   true si el usuario ya ha disparado antes a la posición pasada 
     * como argumento; false en caso contrario
     */
+    @Override
     public boolean hasDisparadoAquiAntes(String posicion){
-        throw new UnsupportedOperationException("JugadorHumano::hasDisparadoAquiAntes. Todavía NO has implementado este método");
+        if (visorDeAtaque.containsKey(posicion))
+            return true;
+        else
+            return super.hasDisparadoAquiAntes(posicion);
     }
 }

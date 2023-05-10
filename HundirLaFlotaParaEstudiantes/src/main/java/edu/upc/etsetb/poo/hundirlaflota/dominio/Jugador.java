@@ -85,7 +85,7 @@ public abstract class Jugador {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
-        throw new UnsupportedOperationException("Jugador::ponBarco. Todavía NO has implementado este método");
+        tablero.ponBarco(barco, posicion, direccion);
     }
 
     /**
@@ -125,8 +125,7 @@ public abstract class Jugador {
      * @return null
      */
     public String procesaHundido(String posDisparo, int numTotalBarcos) {
-        //  Uncomplete
-        numBarcosHundidos--;
+        numBarcosHundidos++;
         return null;
     }
 
@@ -140,7 +139,6 @@ public abstract class Jugador {
      * @return false siempre en la clase Jugador.
      */
     public boolean hasDisparadoAquiAntes(String posDisparo) {
-        // Uncomplete
         return false;
     }
 
@@ -159,8 +157,7 @@ public abstract class Jugador {
      * @return the value of numBarcosHundidos
      */
     public int getNumBarcosHundidos() {
-        throw new UnsupportedOperationException(
-                "Jugador::getNumBarcosHundidos. Todavía NO has implementado este método");
+        return  numBarcosHundidos;
     }
 
     /**
