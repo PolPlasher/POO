@@ -116,17 +116,12 @@ public class Tablero {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
-                
-        /*
-         * METODO NO NECESARIO PARA LA PRIMERA ENTREGA
-         * if (!Posicion.esCorrecta(posicion)) {
-         * throw new PositionException(posicion);
-         * }
-         * Posicion.checkPosicionesCorrectas(new String[] { posicion, direccion },
-         * barco.getLon());
-         * 
-         */
-
+        Posicion.checkNoContactaConOtro(posicion, barco.getLon(), direccion, this);
+        Map<String, Barco> casillas = getCasillas();
+        for (int i = 0; i < barco.getLon(); i++) {
+            casillas.put(barco.getPosiciones().get(i), barco);
+        }
+        setCasillas(casillas);
     }
 
     /**

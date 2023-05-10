@@ -6,6 +6,7 @@ package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -76,7 +77,7 @@ public class Posicion {
      *         en un string posición.
      */
     public static String filaIntToFilaChar(int intFila) {
-        int codePoint = Posicion.ORD_A + intFila - 1;
+        int codePoint = ORD_A + intFila - 1;
         return "" + Character.toChars(codePoint)[0];
     }
 
@@ -98,7 +99,7 @@ public class Posicion {
      *         en caso contrario.
      */
     public static boolean esCorrecta(String posStr) {
-        if (Posicion.filaCharToInt(posStr) >= 1 && Posicion.filaCharToInt(posStr) <= NUM_FILAS) {
+        if (filaCharToInt(posStr) >= 1 && filaCharToInt(posStr) <= NUM_FILAS) {
             int columna = Integer.parseInt(posStr.substring(1));
             if (columna >= 1 && columna <= NUM_COLUMNAS)
                 return true;
@@ -140,15 +141,15 @@ public class Posicion {
      */
     public static String avanzaCasillas(String posicion,
             int deltaFila, int deltaCol) throws PositionException {
-        if (!Posicion.esCorrecta(posicion)) {
+        if (!esCorrecta(posicion)) {
             throw new PositionException(posicion);
         } else {
-            String resultado = Posicion.filaIntToFilaChar(Posicion.filaCharToInt(posicion) + deltaFila)
+            String resultado = filaIntToFilaChar(filaCharToInt(posicion) + deltaFila)
                     + Integer.toString(Integer.parseInt(posicion.substring(1)) + deltaCol);
-            if (Posicion.esCorrecta(resultado)) {
+            if (esCorrecta(resultado)) {
                 return resultado;
             } else {
-                throw new PositionException(resultado);
+                throw new PositionException();
             }
         }
     }
@@ -183,12 +184,12 @@ public class Posicion {
         String posicionActual = "";
         if (posicionDireccion[1].equals(HORIZONTAL)) {
             for (int i = 0; i < numCasillas; i++)
-                posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], 0, i);
+                posicionActual = avanzaCasillas(posicionDireccion[0], 0, i);
         } else if (posicionDireccion[1].equals(VERTICAL)) {
             for (int i = 0; i < numCasillas; i++)
-                posicionActual = Posicion.avanzaCasillas(posicionDireccion[0], i, 0);
+                posicionActual = avanzaCasillas(posicionDireccion[0], i, 0);
         }
-        if (!Posicion.esCorrecta(posicionActual)) {
+        if (!esCorrecta(posicionActual)) {
             throw new PositionException(posicionActual);
         }
     }
@@ -221,31 +222,31 @@ public class Posicion {
             throws PositionException {
         List<String> lista = new ArrayList<>();
 
-        if (!Posicion.esCorrecta(posicion)) {
+        if (!esCorrecta(posicion)) {
             throw new PositionException();
         }
 
         // W
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 0, -1));
+            lista.add(avanzaCasillas(posicion, 0, -1));
         } catch (PositionException e) {
         }
 
         // S
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 1, 0));
+            lista.add(avanzaCasillas(posicion, 1, 0));
         } catch (PositionException e) {
         }
 
         // N
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, -1, 0));
+            lista.add(avanzaCasillas(posicion, -1, 0));
         } catch (PositionException e) {
         }
 
         // E
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 0, 1));
+            lista.add(avanzaCasillas(posicion, 0, 1));
         } catch (PositionException e) {
         }
 
@@ -283,18 +284,18 @@ public class Posicion {
             throws PositionException {
         Set<String> lista = new HashSet<String>();
 
-        if (!Posicion.esCorrecta(posicion))
+        if (!esCorrecta(posicion))
             throw new PositionException();
 
         // N
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, -1, 0));
+            lista.add(avanzaCasillas(posicion, -1, 0));
         } catch (PositionException e) {
         }
 
         // S
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 1, 0));
+            lista.add(avanzaCasillas(posicion, 1, 0));
         } catch (PositionException e) {
         }
 
@@ -332,18 +333,18 @@ public class Posicion {
             throws PositionException {
         Set<String> lista = new HashSet<>();
 
-        if (!Posicion.esCorrecta(posicion))
+        if (!esCorrecta(posicion))
             throw new PositionException();
 
         // E
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 0, 1));
+            lista.add(avanzaCasillas(posicion, 0, 1));
         } catch (PositionException e) {
         }
 
         // W
         try {
-            lista.add(Posicion.avanzaCasillas(posicion, 0, -1));
+            lista.add(avanzaCasillas(posicion, 0, -1));
         } catch (PositionException e) {
         }
         return lista;
@@ -379,20 +380,18 @@ public class Posicion {
     public static Set<String> getAdyacentes(String posicion)
             throws PositionException {
         Set<String> lista = new HashSet<>();
-
-        if (!Posicion.esCorrecta(posicion))
+        if (!esCorrecta(posicion))
             throw new PositionException();
-
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if (i != 0 || j != 0) {
                     try {
-                        lista.add(Posicion.avanzaCasillas(posicion, i, j));
-                    } catch (PositionException e) {
+                        lista.add(avanzaCasillas(posicion, i, j));
+                    } catch (PositionException E) {
                     }
+
                 }
             }
-
         }
         return lista;
     }
@@ -405,11 +404,9 @@ public class Posicion {
      */
     public static List<String> todasLasCasillas() {
         List<String> lista = new ArrayList<>();
-
         for (int i = 1; i <= NUM_FILAS; i++) {
             for (int j = 1; j <= NUM_COLUMNAS; j++) {
                 String casilla = Posicion.filaIntToFilaChar(i) + String.valueOf(j);
-
                 lista.add(casilla);
             }
         }
@@ -452,28 +449,13 @@ public class Posicion {
         if (direccion == VERTICAL)
             vertical = 1;
         for (int i = 0; i < lon; i++) {
-            if (tablero.getBarcoEn(avanzaCasillas(posicion, vertical * i, horizontal * i)) != null)
-                throw new PositionException();
+            Iterator<String> iterator = getAdyacentes(avanzaCasillas(posicion, vertical * i, horizontal * i))
+                    .iterator();
+            while (iterator.hasNext()) {
+                Barco barco = tablero.getBarcoEn(iterator.next());
+                if (barco != null)
+                    throw new PositionException();
+            }
         }
-
-        /*
-         * String posicionActual = posicion;
-         * String[] adyacentes = new String[4];
-         * int deltaFila = 0, deltaCol = 0;
-         * if (direccion.equals(HORIZONTAL)) {
-         * deltaCol = 1;
-         * } else if (direccion.equals(VERTICAL)) {
-         * deltaFila = 1;
-         * }
-         * if (tablero.getPosicionesBarcos().contains(posicionActual)) {
-         * throw new PositionException(posicionActual);
-         * }
-         * adyacentes = Posicion.getAdyacentes(posicionActual).toArray(adyacentes);
-         * for (int j = 0; j < 4; j++) {
-         * if (tablero.getPosicionesBarcos().contains(adyacentes[j])) {
-         * throw new PositionException(posicionActual);
-         * }
-         * }
-         */
     }
 }
