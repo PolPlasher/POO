@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.Iterator;
 
 /**
  *
@@ -387,8 +386,8 @@ public class Posicion {
                     try {
                         lista.add(avanzaCasillas(posicion, i, j));
                     } catch (PositionException E) {
+                        continue;
                     }
-
                 }
             }
         }
@@ -443,19 +442,48 @@ public class Posicion {
     public static void checkNoContactaConOtro(String posicion, int lon, String direccion, Tablero tablero)
             throws PositionException {
         int horizontal = 0, vertical = 0;
-        checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
         if (direccion == HORIZONTAL)
             horizontal = 1;
         if (direccion == VERTICAL)
             vertical = 1;
+        //checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
+        String posicionBarco = posicion;
         for (int i = 0; i < lon; i++) {
-            Iterator<String> iterator = getAdyacentes(avanzaCasillas(posicion, vertical * i, horizontal * i))
-                    .iterator();
+
+            Set<String> adyacentes;
+            try {
+                posicionBarco = avanzaCasillas(posicionBarco, vertical * i, horizontal * i);
+                adyacentes = getAdyacentes(posicionBarco);
+            } catch (PositionException E) {
+                continue;
+            }
+
+            Iterator<String> iterator = adyacentes.iterator();
+
             while (iterator.hasNext()) {
-                Barco barco = tablero.getBarcoEn(iterator.next());
-                if (barco != null)
+                String adyacente = iterator.next();
+                if (tablero.getBarcoEn(adyacente) != null)
                     throw new PositionException();
             }
         }
+
+        /*
+         * int horizontal = 0, vertical = 0;
+         * checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
+         * if (direccion == HORIZONTAL)
+         * horizontal = 1;
+         * if (direccion == VERTICAL)
+         * vertical = 1;
+         * for (int i = 0; i < lon; i++) {
+         * Iterator<String> iterator = getAdyacentes(avanzaCasillas(posicion, vertical *
+         * i, horizontal * i))
+         * .iterator();
+         * while (iterator.hasNext()) {
+         * Barco barco = tablero.getBarcoEn(iterator.next());
+         * if (barco != null)
+         * throw new PositionException();
+         * }
+         * }
+         */
     }
 }
