@@ -22,18 +22,8 @@ public class Room {
         secretElements = new HashMap<>();
     }
 
-    // Connecta unidireccionalment aquesta sala amb una altra.
-    public void connect(Room destination, String exitName) {
-        exits.put(exitName, destination);
-    }
-
     public String getName() {
         return name;
-    }
-
-    // Retorna la sala a la qual s'accedeix per una sortida donada.
-    public Room nextRoom(String exitName) {
-        return exits.get(exitName);
     }
 
     public SecretElement getElement(String elementName) {
@@ -44,14 +34,24 @@ public class Room {
         secretElements.put(el.name, el);
     }
 
-    public void putItem(Item item) {
-        items.put(item.getName(), item);
-    }
-
     public Item retrieveItem(String itemName) {
         Item item = items.get(itemName);
         items.remove(itemName);
         return item;
+    }
+
+    public void putItem(Item item) {
+        items.put(item.getName(), item);
+    }
+
+    // Connecta unidireccionalment aquesta sala amb una altra.
+    public void connect(Room destination, String exitName) {
+        exits.put(exitName, destination);
+    }
+
+    // Retorna la sala a la qual s'accedeix per una sortida donada.
+    public Room nextRoom(String exitName) {
+        return exits.get(exitName);
     }
 
     /**
