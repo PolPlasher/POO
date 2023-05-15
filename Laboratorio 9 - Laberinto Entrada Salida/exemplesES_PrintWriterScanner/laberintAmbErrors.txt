@@ -1,0 +1,64 @@
+// INSTRUCCIONS: Executa el programa i mira quin error es produeix.
+// Aleshores comenta la linia d'aquest fitxer responsable de l'error
+// i torna a executar. Repeteix el procés fins que no hi hagi errors.
+
+// Objectiu;Descripcio de l'objectiu
+Objectiu;Anar fins la sala Arribada amb una corona d or.
+
+// Sala;Nom sala;Descripcio
+Sala;Exterior;Una gran obertura al costat de la muntanya permet entrar al laberint.
+Sala;Boca de la cova;La boca de la cova condueix cap a una bifurcacio en extrems oposats.
+Sala;Caverna Principal;Una enorme caverna s obre al teu davant. Terra i sostre es troben plens d'estalagmites i estalactites. Es un cofre aixo que es veu?
+Sala;Cul de sac;El passadis acaba abruptament en un munt de rocs producte d una esllevissada. Sembla que hi ha un forat.
+Sala;Arribada;Un paisatge idilic.
+Sala;Tunel;Un tunel estret. Al final es veu una mica de llum.
+Sala;Exterior;Ja hi ha una altra sala amb aquest nom.
+
+// Item;Nom;Descripcio;Valor;Carrega(encumbrance);Sala on esta
+// o be
+// Item;Nom;Descripcio;Valor;Carrega(encumbrance)
+// si l'item no est� a cap sala
+Item;Capsa;Una capsa de fusta tancada.;10;15;Cul de sac
+Item;Moneda;Una antiga moneda d'or.;100;1;Boca de la cova
+Item;Roc;Un roc de bassalt.;20;5;Caverna Principal
+Item;Estelactita;Una estelactita punxeguda.;20;10;Exterior
+Item;Corona;Una corona d or.;130;5
+Item;Corona;Una corona de plata;120;7
+
+//Connecta;Nom sala origen;Nom sala desti;Nom acces (o sortida)
+Connecta;Exterior;Boca de la cova;Entrada
+Connecta;Boca de la cova;Caverna Principal;Est
+Connecta;Boca de la cova;Cul de sac;Oest
+Connecta;Boca de la cova;Exterior;Sortida
+Connecta;Cul de sac;Boca de la cova;Recular
+Connecta;Caverna Principal;Boca de la cova;Enrera
+Connecta;Tunel;Arribada;Sortida
+Connecta;Tunel;Cul de sac;Forat
+Connecta;Tunel;No such room;Tapat
+Connecta;Res;Cul de sac;No te porta
+Connecta;Cul de sac;Boca de la cova
+
+// Elements secrets
+
+// Porta;Nom porta;Nom clau;Nom sala origen;Nom sala desti
+// Quan la porta s'activa es crea una nova connexio entre la sala
+// origen i la desti. El nom de l'acces es Nom porta.
+Porta;Forat;Pedra;Cul de sac;Tunel
+Porta;Forat;Roc;Interior;Tunel
+Porta;Forat;Roc;Cul de sac;Passadis
+Porta;Forat;Roc;Cul de sac;Tunel
+Porta;Forat;Roc;Cul de sac;Boca de la cova
+
+// Contenidor;Nom contenidor;Nom clau;Sala on esta;Item amagat
+Contenidor;Cofre;Punxo;Caverna Principal;Corona
+Contenidor;Cofre;Estelactita;Interior;Corona
+Contenidor;Cofre;Estelactita;Exterior;Anell
+Contenidor;Cofre;Estelactita;Caverna Principal;Corona
+Contenidor;Cofre;Estelactita;Exterior;Corona
+
+// Inici;Nom sala inici 
+Inici;No such room
+Inici;Exterior
+
+// Codi incorrecte
+Patata;Aquesta opció no existeix.
