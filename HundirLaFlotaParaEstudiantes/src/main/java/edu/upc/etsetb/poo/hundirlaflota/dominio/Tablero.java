@@ -115,23 +115,18 @@ public class Tablero {
      */
     public void ponBarco(Barco barco, String posicion, String direccion)
             throws PositionException {
+
         Posicion.checkNoContactaConOtro(posicion, barco.getLon(), direccion, this);
-        ArrayList<String> posiciones = new ArrayList<>();
-        String posicionActual;
-        if (posicion.equals("H")) {
-            for (int i = 0; i < barco.getLon(); i++) {
-                posicionActual = Posicion.avanzaCasillas(posicion, 0, i);
-                posiciones.add(posicionActual);
-                casillas.put(posicionActual, barco);
-            }
-        } else if (posicion.equals("V")) {
-            for (int i = 0; i < barco.getLon(); i++) {
-                posicionActual = Posicion.avanzaCasillas(posicion, i, 0);
-                posiciones.add(posicionActual);
-                casillas.put(posicionActual, barco);
-            }
+        
+        int horizontal = 0, vertical = 0;
+        if (direccion == Posicion.HORIZONTAL)
+            horizontal = 1;
+        if (direccion == Posicion.VERTICAL)
+            vertical = 1;
+        for (int i = 0; i < barco.getLon(); i++) {
+            String casilla = Posicion.avanzaCasillas(posicion, vertical * i, horizontal * i);
+            casillas.put(casilla, barco);
         }
-        barco.setPosiciones(posiciones);
     }
 
     /**

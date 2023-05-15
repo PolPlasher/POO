@@ -446,7 +446,6 @@ public class Posicion {
             horizontal = 1;
         if (direccion == VERTICAL)
             vertical = 1;
-        //checkPosicionesCorrectas(new String[] { posicion, direccion }, lon);
         String posicionBarco = posicion;
         for (int i = 0; i < lon; i++) {
 
