@@ -21,10 +21,14 @@ public class JugadorHumano extends Jugador {
     /**
      * Inicializa el jugador.
      *
-     * <br>Inicializa el atributo numBarcosHundidos a 0.
-     * <br>Crea un tablero.
-     * <br>Inicializa el atributo nombre al argumento nombre.
-     * <br>Crea visor_ataque como un mapa vacío.
+     * <br>
+     * Inicializa el atributo numBarcosHundidos a 0.
+     * <br>
+     * Crea un tablero.
+     * <br>
+     * Inicializa el atributo nombre al argumento nombre.
+     * <br>
+     * Crea visor_ataque como un mapa vacío.
      *
      * @param nombre el nombre del barco.
      */
@@ -40,7 +44,7 @@ public class JugadorHumano extends Jugador {
      */
     @Override
     public Map<String, String> getVisorDeAtaque() {
-        throw new UnsupportedOperationException("JugadorHumano::getVisorDeAtaque. Todavía NO has implementado este método");
+        return visorDeAtaque;
     }
 
     /**
@@ -51,18 +55,19 @@ public class JugadorHumano extends Jugador {
      */
     @Override
     public String dispara() {
-        throw new UnsupportedOperationException("JugadorHumano::dispara. Todavía NO has implementado este método");
+        return "ASK_USER";
     }
 
     /**
      * Devuelve siempre true
+     * 
      * @return true
      */
     @Override
     public boolean eresHumano() {
-        throw new UnsupportedOperationException("JugadorHumano::eresHumano. Todavía NO has implementado este método");
+        return true;
     }
-    
+
     /**
      * Devuelve siempre el string "ASK_USER"
      *
@@ -71,9 +76,11 @@ public class JugadorHumano extends Jugador {
      */
     @Override
     public String procesaTocado(String posDisparo) throws PositionException {
-        throw new UnsupportedOperationException("JugadorHumano::procesaTocado. Todavía NO has implementado este método");
+        if (!Posicion.esCorrecta(posDisparo))
+            throw new PositionException();
+        return "ASK_USER";
     }
-    
+
     /**
      * Devuelve siempre el string "ASK_USER"
      *
@@ -82,19 +89,21 @@ public class JugadorHumano extends Jugador {
      */
     @Override
     public String procesaHundido(String posDisparo, int numTotalBarcos) {
-        throw new UnsupportedOperationException("JugadorHumano::procesaHundido. Todavía NO has implementado este método");
+        numBarcosHundidos++;
+        return "ASK_USER";
     }
 
-    /**Anota el resultado pasado como argumento al disparar a la posición 
+    /**
+     * Anota el resultado pasado como argumento al disparar a la posición
      * pasada como argumento, en el visor de ataque del jugador.
-    *
-    * @param posDisparo   la posición a la que el jugador ha disparado
-    * @param resultado   el resultado del disparo (Jugador.AGUA, Jugador.TOCADO 
-    * o Jugador.HUNDIDO)
-    */
+     *
+     * @param posDisparo la posición a la que el jugador ha disparado
+     * @param resultado  el resultado del disparo (Jugador.AGUA, Jugador.TOCADO
+     *                   o Jugador.HUNDIDO)
+     */
     @Override
     public void anotaDisparoPropio(String posDisparo, String resultado) {
-        throw new UnsupportedOperationException("JugadorHumano::anotaDisparoPropio. Todavía NO has implementado este método");
+        visorDeAtaque.put(posDisparo, resultado);
     }
 
     /**
@@ -109,24 +118,28 @@ public class JugadorHumano extends Jugador {
      * Barco::addPosicionTocada.
      *
      * @param posDisparo la posición a la que el adversario ha disparado
-     * @param resultado el resultado del disparo (Jugador.AGUA, Jugador.TOCADO o
-     * Jugador.HUNDIDO)
-     */  
+     * @param resultado  el resultado del disparo (Jugador.AGUA, Jugador.TOCADO o
+     *                   Jugador.HUNDIDO)
+     */
     @Override
     public void anotaDisparoAjeno(String posDisparo, String resultado) {
-        throw new UnsupportedOperationException("JugadorHumano::anotaDisparoAjeno. Todavía NO has implementado este método");
+        if (resultado == AGUA)
+            tablero.anotaAguaEnHumano(posDisparo);
+        else if (resultado == TOCADO || resultado == HUNDIDO)
+            tablero.getBarcoEn(posDisparo).addPosicionTocada(posDisparo);
     }
 
-        /**Retorna true si el usuario ya ha disparado antes a la posición 
-         * pasada como argumento (puede usarse el visor
-    * de disparos para averiguarlo); retorna false en caso contrario.
-    *
-    * @param    posicion  la posición a la que dispara el jugador.
-    * @return   true si el usuario ya ha disparado antes a la posición pasada 
-    * como argumento; false en caso contrario
-    */
+    /**
+     * Retorna true si el usuario ya ha disparado antes a la posición
+     * pasada como argumento (puede usarse el visor
+     * de disparos para averiguarlo); retorna false en caso contrario.
+     *
+     * @param posicion la posición a la que dispara el jugador.
+     * @return true si el usuario ya ha disparado antes a la posición pasada
+     *         como argumento; false en caso contrario
+     */
     @Override
-    public boolean hasDisparadoAquiAntes(String posicion){
+    public boolean hasDisparadoAquiAntes(String posicion) {
         if (visorDeAtaque.containsKey(posicion))
             return true;
         else

@@ -53,22 +53,32 @@ public class JugadorMaquina extends Jugador {
     /**
      * Inicializa el jugador máquina.
      *
-     * <br>Incrementa en una unidad el valor de JugadorMaquina.num_instances.
-     * <br>Crea un tablero.
-     * <br>Inicializa num_barcos_hundidos a 0.
-     * <br>Inicializa noDisparadas con todas las casillas del tablero. Para ello
+     * <br>
+     * Incrementa en una unidad el valor de JugadorMaquina.num_instances.
+     * <br>
+     * Crea un tablero.
+     * <br>
+     * Inicializa num_barcos_hundidos a 0.
+     * <br>
+     * Inicializa noDisparadas con todas las casillas del tablero. Para ello
      * debe invocar al método Posicion::todasLasCasillas.
-     * <br>Inicializa tocadas a una lista vacía.
-     * <br>Inicializa proximosDisparos a una lista vacía.
-     * <br>Inicializa dirBarcoTocado a null.
-     * <br>Inicializa myRandom a un objeto de clase Random y le asigna como
+     * <br>
+     * Inicializa tocadas a una lista vacía.
+     * <br>
+     * Inicializa proximosDisparos a una lista vacía.
+     * <br>
+     * Inicializa dirBarcoTocado a null.
+     * <br>
+     * Inicializa myRandom a un objeto de clase Random y le asigna como
      * semilla el valor de JugadorMaquina.num_instances.
-     * <br>Inicializa nombre a "JugadorMaquina-" seguido del valor de
+     * <br>
+     * Inicializa nombre a "JugadorMaquina-" seguido del valor de
      * JugadorMaquina::numInstances.
      */
     public JugadorMaquina() {
-        super("JugadorMaquina-" + Integer.toString(numInstances+1));
+        super("Maquina-" + Integer.toString(numInstances + 1));
         numInstances++;
+        noDisparadas = new ArrayList<>();
         for (String casilla : Posicion.todasLasCasillas())
             noDisparadas.add(casilla);
         tocadas = new ArrayList<>();
@@ -81,20 +91,25 @@ public class JugadorMaquina extends Jugador {
      * Ordena disparar al JugadorMáquina siguiendo los criterios mostrados en la
      * descripción larga.
      *
-     * <br>Si se ha tocado antes a un barco contrario, extrae la primera
+     * <br>
+     * Si se ha tocado antes a un barco contrario, extrae la primera
      * posición de la lista proximosDisparos y la retorna como posición a la que
      * se realiza un nuevo disparo.
-     * <br>En caso contrario calcula aleatoriamente un entero correspondiente a
+     * <br>
+     * En caso contrario calcula aleatoriamente un entero correspondiente a
      * un índice en la lista noDisparadas, extrae esa posición y la retorna como
      * posición a la que se realiza un nuevo disparo
      *
      * @return la primera posición de la lista proximosDisparos si se había
-     * tocado antes a un barco o una de las posiciones de noDisparadas elegida
-     * aleatoriamente.
+     *         tocado antes a un barco o una de las posiciones de noDisparadas
+     *         elegida
+     *         aleatoriamente.
      */
     @Override
     public String dispara() {
-        throw new UnsupportedOperationException("JugadorMaquina::dispara. Todavía NO has implementado este método");
+        if (!tocadas.isEmpty())
+            return proximosDisparos.get(0);
+        return noDisparadas.get(myRandom.nextInt(noDisparadas.size()));
     }
 
     /**
@@ -115,7 +130,8 @@ public class JugadorMaquina extends Jugador {
      * Debe usar los métodos Listas::quitaAUnaOtra, Posicion::getEsteOeste y
      * Posicion::getNorteSur.
      *
-     * <br>Si dir es "V":
+     * <br>
+     * Si dir es "V":
      * <ol>
      * <li>Se quitan de proximosDisparos las posiciones que no están en la misma
      * columna que la posición de disparo.</li>
@@ -135,7 +151,8 @@ public class JugadorMaquina extends Jugador {
      * @throws PositionException si alguna posición no es correcta
      */
     public void dejaSoloFilaOColumna(String posDisparo) throws PositionException {
-        throw new UnsupportedOperationException("JugadorMaquina::dejaSoloFilaOColumna. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "JugadorMaquina::dejaSoloFilaOColumna. Todavía NO has implementado este método");
     }
 
     /**
@@ -154,26 +171,29 @@ public class JugadorMaquina extends Jugador {
      * a continuación se dispara de nuevo y se devuelve esta nueva posición de
      * disparo.</li>
      * <li>Si es la segunda vez que se toca al barco, se determina la dirección
-     * en que se ha dispuesto el barco sobre el tablero<li>
-     * <li>Se deja en proximosDisparos solo las posiciones que 
-     * están en la fila o en la columna de la posición de disparo en función 
+     * en que se ha dispuesto el barco sobre el tablero
+     * <li>
+     * <li>Se deja en proximosDisparos solo las posiciones que
+     * están en la fila o en la columna de la posición de disparo en función
      * de la dirección de disposición del barco</li>
-     * <li>se elimina de proximosDisparos aquellas posiciones en las que ya se 
+     * <li>se elimina de proximosDisparos aquellas posiciones en las que ya se
      * había tocado al barco adversario.</li>
      * <li>Se dispara de nuevo y se devuelve el nuevo disparo invocando a
      * JugadorMaquina::dispara().
      * </ol>
      *
      * @param posDisparo la posición de disparo realizada por el jugador máquina
-     * que ha tocado a un barco del adversario.
+     *                   que ha tocado a un barco del adversario.
      *
      * @return la posición del nuevo disparo realizado por el jugador máquina
-     * (cuando se toca a un barco del adversario se tiene derecho a realizar un
-     * nuevo disparo).
+     *         (cuando se toca a un barco del adversario se tiene derecho a realizar
+     *         un
+     *         nuevo disparo).
      */
     @Override
     public String procesaTocado(String posDisparo) throws PositionException {
-        throw new UnsupportedOperationException("JugadorMaquina::procesaTocado. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "JugadorMaquina::procesaTocado. Todavía NO has implementado este método");
     }
 
     /**
@@ -181,28 +201,30 @@ public class JugadorMaquina extends Jugador {
      * barco de su adversario; en la descripción larga se detalla qué debe
      * hacer.
      *
-     * <br>Si el número de barcos hundidos es igual al valor del argumento
+     * <br>
+     * Si el número de barcos hundidos es igual al valor del argumento
      * numTotalBarcos, retorna null. Si no es así:
      * <ol>
      * <li>Invoca a procesar_hundido de la superclase.</li>
      * <li>inicializa tocadas a una lista vacía.</li>
      * <li>Inicializa dir_barco_tocado a null.</li>
      * <li>Inicializa proximos_disparos a una lista vacía.</li>
-     * <li>Si el número de barcos hundidos del adversario es igual 
-     * al valor del argumento numTotalBarcos, retorna null; si no es 
+     * <li>Si el número de barcos hundidos del adversario es igual
+     * al valor del argumento numTotalBarcos, retorna null; si no es
      * así, dispara de nuevo y devuelve el nuevo disparo</li>
      * </ol>
      *
-     * @param posDisparo la posición de disparo realizada por el jugador máquina
-     * que ha hundido a un barco del adversario.
+     * @param posDisparo     la posición de disparo realizada por el jugador máquina
+     *                       que ha hundido a un barco del adversario.
      * @param numTotalBarcos el número total de barcos del adversario.
      *
      * @return null si ya se han hundido todos los barcos del adversario o la
-     * posición de un nuevo disparo si no es así.
+     *         posición de un nuevo disparo si no es así.
      */
     @Override
     public String procesaHundido(String posDisparo, int numTotalBarcos) {
-        throw new UnsupportedOperationException("JugadorMaquina::procesaHundido. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "JugadorMaquina::procesaHundido. Todavía NO has implementado este método");
     }
 
     /**
@@ -210,22 +232,24 @@ public class JugadorMaquina extends Jugador {
      * realizan en dispara() procesaTocado() y procesaHundido()
      *
      * @param posDisparo la posición de disparo
-     * @param resultado el resultado
+     * @param resultado  el resultado
      */
     @Override
     public void anotaDisparoPropio(String posDisparo, String resultado) {
-        throw new UnsupportedOperationException("JugadorMaquina::anotaDisparoPropio. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "JugadorMaquina::anotaDisparoPropio. Todavía NO has implementado este método");
     }
 
     /**
      * NO HACE NADA: el jugador máquina NO necesita anotar nada del disparo ajeno
      *
      * @param posDisparo la posición de disparo
-     * @param resultado el resultado
+     * @param resultado  el resultado
      */
     @Override
     public void anotaDisparoAjeno(String posDisparo, String resultado) {
-        throw new UnsupportedOperationException("JugadorMaquina::anotaDisparoAjeno. Todavía NO has implementado este método");
+        throw new UnsupportedOperationException(
+                "JugadorMaquina::anotaDisparoAjeno. Todavía NO has implementado este método");
     }
 
     /**
