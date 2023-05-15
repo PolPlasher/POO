@@ -15,20 +15,24 @@ public class Item {
         encumbrance = 0;
     }
 
-    public int getEncumbrance() {
-        return encumbrance;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setEncumbrance(int enc) {
-        encumbrance = enc;
+    public int getValue() {
+        return value;
     }
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getEncumbrance() {
+        return encumbrance;
+    }
+
+    public void setEncumbrance(int enc) {
+        encumbrance = enc;
     }
 
     /**

@@ -28,6 +28,14 @@ public class Adventurer {
         encumbrance = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Room getCurrentLocation() {
+        return currentLocation;
+    }
+
     public int move(String exitName) {
         if (currentLocation.nextRoom(exitName) == null)
             return NO_SUCH_EXIT;
@@ -56,12 +64,21 @@ public class Adventurer {
         return OK_ACTION;
     }
 
-    public Room getCurrentLocation() {
-        return currentLocation;
+    public int useItemOnElement(String itemName, String elementName) {
+        if (inventory.get(elementName) == null)
+            return NO_SUCH_ITEM_IN_INVENTORY;
+        if (currentLocation.getElement(elementName) == null)
+            return NO_SUCH_ELEMENT_IN_ROOM;
+        return currentLocation.getElement(elementName).use(inventory.get(elementName));
     }
 
-    public String getName() {
-        return name;
+    public int getTotalValueInventory() {
+        Iterator<Item> iterator = inventory.values().iterator();
+        int totalValue = 0;
+        while (iterator.hasNext()) {
+            totalValue += iterator.next().getValue();
+        }
+        return totalValue;
     }
 
     /**
@@ -82,13 +99,5 @@ public class Adventurer {
             }
         }
         return text;
-    }
-
-    public int useItemOnElement(String itemName, String elementName) {
-        if (inventory.get(elementName) == null)
-            return NO_SUCH_ITEM_IN_INVENTORY;
-        if (currentLocation.getElement(elementName) == null)
-            return NO_SUCH_ELEMENT_IN_ROOM;
-        return currentLocation.getElement(elementName).use(inventory.get(elementName));
     }
 }
