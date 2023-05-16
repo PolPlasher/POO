@@ -107,9 +107,13 @@ public class JugadorMaquina extends Jugador {
      */
     @Override
     public String dispara() {
-        if (!tocadas.isEmpty())
-            return proximosDisparos.get(0);
-        return noDisparadas.get(myRandom.nextInt(noDisparadas.size()));
+        if (!tocadas.isEmpty()) {
+            String disparo = proximosDisparos.get(0);
+            proximosDisparos.remove(0);
+            return disparo;
+        } else
+            //  WIP
+            return noDisparadas.get(myRandom.nextInt(noDisparadas.size()));
     }
 
     /**
