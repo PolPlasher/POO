@@ -5,6 +5,7 @@
 package edu.upc.etsetb.poo.hundirlaflota.dominio;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -107,13 +108,17 @@ public class JugadorMaquina extends Jugador {
      */
     @Override
     public String dispara() {
+        String posicionDisparo;
         if (!tocadas.isEmpty()) {
-            String disparo = proximosDisparos.get(0);
+            posicionDisparo = proximosDisparos.get(0);
             proximosDisparos.remove(0);
-            return disparo;
-        } else
-            //  WIP
-            return noDisparadas.get(myRandom.nextInt(noDisparadas.size()));
+            return posicionDisparo;
+        } else {
+            int randomIndex = myRandom.nextInt(noDisparadas.size());
+            posicionDisparo = noDisparadas.get(randomIndex);
+            noDisparadas.remove(randomIndex);
+            return posicionDisparo;
+        }
     }
 
     /**
@@ -155,8 +160,18 @@ public class JugadorMaquina extends Jugador {
      * @throws PositionException si alguna posición no es correcta
      */
     public void dejaSoloFilaOColumna(String posDisparo) throws PositionException {
-        throw new UnsupportedOperationException(
-                "JugadorMaquina::dejaSoloFilaOColumna. Todavía NO has implementado este método");
+        List<String> eliminados = new ArrayList<String>();
+
+        for (String elementoEliminado : proximosDisparos) {
+            if (dirBarcoTocado == Posicion.VERTICAL && !elementoEliminado.substring(1).equals(posDisparo.substring(1)))
+                eliminados.add(elementoEliminado);
+            else if (dirBarcoTocado == Posicion.HORIZONTAL
+                    && elementoEliminado.substring(0, 1) != posDisparo.substring(0, 1)) {
+                eliminados.add(elementoEliminado);
+            }
+        }
+        Listas.quitaAUnaOtra(proximosDisparos, eliminados);
+
     }
 
     /**
