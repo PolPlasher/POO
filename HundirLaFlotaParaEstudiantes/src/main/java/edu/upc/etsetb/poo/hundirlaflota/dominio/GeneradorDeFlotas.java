@@ -66,8 +66,24 @@ public class GeneradorDeFlotas {
      *                           bien diseñados e implementador)
      */
     public void generaFlotaDeterminista(Jugador jugador) throws PositionException {
-        throw new UnsupportedOperationException(
-                "GeneradorDeFlotas::generaFlotaDeterminista. Todavía NO has implementado este método");
+        Barco barco = Barco.creaBarco("L", "Lancha");
+        jugador.ponBarco(barco, "A6", "H");
+        barco = Barco.creaBarco("L", "Lancha");
+        jugador.ponBarco(barco, "D1", "H");
+        barco = Barco.creaBarco("L", "Lancha");
+        jugador.ponBarco(barco, "J1", "H");
+        barco = Barco.creaBarco("C", "Crucero");
+        jugador.ponBarco(barco, "B10", "V");
+        barco = Barco.creaBarco("C", "Crucero");
+        jugador.ponBarco(barco, "G9", "H");
+        barco = Barco.creaBarco("S", "Submarino");
+        jugador.ponBarco(barco, "B1", "H");
+        barco = Barco.creaBarco("S", "Submarino");
+        jugador.ponBarco(barco, "H1", "H");
+        barco = Barco.creaBarco("B", "Buque");
+        jugador.ponBarco(barco, "G6", "V");
+        barco = Barco.creaBarco("P", "Portaviones");
+        jugador.ponBarco(barco, "E4", "H");
     }
 
     /**
@@ -101,8 +117,19 @@ public class GeneradorDeFlotas {
      */
     public void generaYPonBarco(Jugador jugador, String tipoBarco,
             String nombreBarco, Random random) {
-        throw new UnsupportedOperationException(
-                "GeneradorDeFlotas::generaYPonBarco. Todavía NO has implementado este método");
+        Barco barco = Barco.creaBarco(tipoBarco, nombreBarco);
+        int fila = random.nextInt(10);
+        int columna = random.nextInt(10) + 1;
+        String direccion;
+        if (random.nextInt(2) == 0)
+            direccion = "H";
+        else
+            direccion = "V";
+        String coordenada = Posicion.filaIntToFilaChar(fila) + Integer.toString(columna);
+        try {
+            jugador.ponBarco(barco, coordenada, direccion);
+        } catch (PositionException e) {
+        }
     }
 
     /**
@@ -117,8 +144,30 @@ public class GeneradorDeFlotas {
         Random random = new Random(System.currentTimeMillis());
         // Aquí debajo, eliminad la sentencia que crea y lanza la excepción
         // y sustituidla por vuestro código
-        throw new UnsupportedOperationException(
-                "GeneradorDeFlotas::generaFlotaAleatoria. Todavía NO has implementado este método");
+        Barco barco;
+        String direccion, posicion;
+        for (int i = 0; i < 9; i++){
+            if (random.nextInt(2) == 0)
+                direccion = "H";
+            else
+                direccion = "V";
+            posicion = Posicion.filaIntToFilaChar(random.nextInt(10)) + Integer.toString(random.nextInt(10) + 1);
+            if (i < 3)
+                barco = Barco.creaBarco("L", "Lancha");
+            else if (i < 5)
+                barco = Barco.creaBarco("C", "Crucero");
+            else if (i < 7)
+                barco = Barco.creaBarco("S", "Submarino");
+            else if (i == 7)
+                barco = Barco.creaBarco("B", "Buque");
+            else
+                barco = Barco.creaBarco("P", "Portaviones");
+            try{
+                jugador.ponBarco(barco, posicion, direccion);
+            } catch (PositionException e){
+                i--;
+            }
+        }
     }
 
     /**
